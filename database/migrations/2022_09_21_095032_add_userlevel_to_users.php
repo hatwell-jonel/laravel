@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNamesToStudentsTable extends Migration
+class AddUserlevelToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class AddNamesToStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('students', function (Blueprint $table) {
-            // $table->string('firstname')->after('student_id');
-            // $table->string('middlename')->after('firstname');
-            // $table->string('lastname')->after('lastname');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('user_level')->after('id');
         });
     }
 
@@ -27,7 +25,7 @@ class AddNamesToStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('students', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }
