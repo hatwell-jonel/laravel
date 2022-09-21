@@ -6,9 +6,17 @@
             @include('modal.addStudent')
 
             <div class="">
-                <button class="btn btn-warning"> <i class="fa fa-download"></i> PDF </button>
+                <form action="{{route('pdf')}}" method="post" target="_blank">
+                    @csrf
+                    <button class="btn btn-warning"> <i class="fa fa-download"></i> PDF </button>
+                </form>
+                
                 <button class="btn btn-success"> <i class="fa fa-download"></i> EXCEL </button>
-                <button class="btn btn-info"> <i class="fa fa-upload"></i> EXCEL </button>
+
+                <form action="{{route('export-excel')}}">
+                    @csrf
+                    <button class="btn btn-info"> <i class="fa fa-upload"></i> EXCEL </button>
+                </form>
             </div>
         </div>
         <table class="table">
