@@ -22,8 +22,34 @@
             </div>
         </form> --}}
       <!-- /.search form -->
+
+
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      {{-- <ul class="sidebar-menu" data-widget="tree">
+
+      <ul class="sidebar-menu"  data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="active">
+          <a href="{{route('dashboard')}}">
+           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="{{route('application')}}">
+            <i class="fa fa-dashboard"></i> <span>Application</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="{{route('announcement')}}">
+            <i class="fa fa-dashboard"></i> <span>Announcement</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="{{route('accounts')}}">
+            <i class="fa fa-dashboard"></i> <span>Accounts</span>
+          </a>
+        </li>
+      </ul>
+      <!-- {{-- <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
           <a href="#">
@@ -193,7 +219,7 @@
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
-      </ul> --}}
+      </ul> --}} -->
     </section>
     <!-- /.sidebar -->
   </aside>

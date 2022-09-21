@@ -19,7 +19,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix'=>'admin'], function(){
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    Route::get('/application', 'HomeController@applicationPage')->name('application');
+    Route::get('/announcement', 'HomeController@announcementPage')->name('announcement');
+    Route::get('/accounts', 'HomeController@accountsPage')->name('accounts');
+});
 
 
 Route::resource('/students', "StudentController");

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('application');
+        $pageTitle = 'dashboard';
+        return view('access_admin.dashboard')->with('title', $pageTitle);
+    }
+
+    public function applicationPage()
+    {
+        $students = Student::all();
+        return view('student.index')->with('students', $students);
+    }
+
+    public function announcementPage(){
+        $pageTitle = 'announcement';
+        return view('access_admin.announcement')->with('title', $pageTitle);
+    }
+   
+    public function accountsPage(){
+        $pageTitle = 'accounts';
+        return view('access_admin.accounts')->with('title', $pageTitle);
     }
 }

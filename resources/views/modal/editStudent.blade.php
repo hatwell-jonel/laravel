@@ -9,7 +9,7 @@
          <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span></button>
-             <h4 class="modal-title">{{$student->student_id}}</h4>
+             <h4 class="modal-title">student: {{$student->student_id}}</h4>
          </div>
          <div class="modal-body">
                  {!! Form::open(["action" => ["StudentController@update", $student->id], "method" => "POST" , "class" => "addForm border border-danger"]) !!}
@@ -75,7 +75,7 @@
                      {{ Form::hidden('_method', 'PUT') }}  
                      <div class="row" style="margin-top: 20px;">
                          <div class="col-md-12">
-                             <button class="btn btn-primary"type="submit">add student</button>
+                             <button class="btn btn-primary"type="submit">update student</button>
                          </div>
                      </div>
                  {!! Form::close() !!}  

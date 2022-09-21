@@ -1,8 +1,16 @@
-@extends('layouts.app')
+@extends('access_admin.application')
 
-@section('content')
+@section('application')
     <div class="container-fluid">
-        @include('modal.addStudent')
+        <div style="display: flex; align-items:center; justify-content:space-between;">
+            @include('modal.addStudent')
+
+            <div class="">
+                <button class="btn btn-warning"> <i class="fa fa-download"></i> PDF </button>
+                <button class="btn btn-success"> <i class="fa fa-download"></i> EXCEL </button>
+                <button class="btn btn-info"> <i class="fa fa-upload"></i> EXCEL </button>
+            </div>
+        </div>
         <table class="table">
             <thead>
             <tr>
@@ -33,7 +41,7 @@
                             <td>{{ $student->birthdate}}</td>
                             <td>{{ $student->birthplace}}</td>
                             <td>{{ $student->address}}</td>
-                            <td class="d-flex">
+                            <td style="display: flex; align-items:center; gap:5px;">
 
                                 @include('modal.editStudent')
                                 {{-- <button class="btn btn-success"> <i class="fa fa-edit"></i></button> --}}
@@ -51,24 +59,4 @@
             </tbody>
         </table>
     </div>
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                application
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 @endsection
