@@ -8,8 +8,6 @@
 
 
 @section('admin_announcement')
-    <h1>Hello</h1>
-
     <div class="container-fluid">
         @include('modal.addAnnouncement')
         <table class="table">
@@ -18,7 +16,7 @@
                 <th scope="col">id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
-                <th scope="col">Date Created</th>
+                <th scope="col">Description</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -29,8 +27,14 @@
                         <th scope="row">{{$announcement->id}}</th>
                         <td>{{$announcement->title}}</td>
                         <td>{{$announcement->detail}}</td>
-                        {{-- <td><img class="imagedone" width=50% height=50% src="{{ asset('storage/app/images'.$announcement->image)}}" alt="image"></td> --}}
+                        <!-- <td>
+                            <img class="imagedone" style="width: 80px;" src="{{ asset('images/'.$announcement->image) }}" alt="image">
+                        </td> -->
                         <td>{{date('M d, Y' , strtotime($announcement->created_at))}}</td>
+                        <td>
+                            <button class="btn btn-warning">edit</button>
+                            <button class="btn btn-danger">delete</button>
+                        </td>
                     </tr>
                 @endforeach
                  

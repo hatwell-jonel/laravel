@@ -36,30 +36,17 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
 
-
-        //guessExtension()
         //getMimeType()
         //getSize()
         //getClientOriginalName()
-
-        // $name = $request->file('announcement_image')->getClientOriginalName();
-        // $test = $request->file('announcement_image')->guessExtension();
-        // $imagename = time() . '-' .  $request->announcement_title . '.' . $request->announcement_image->guessExtension();
-        // dd($imagename);  
-
-        // $request->announcement_image->store('images');
-
+        $imagename = time() . '-' .  $request->announcement_title . '.' . $request->announcement_image->guessExtension();
+        $request->announcement_image->move(public_path('images'), $imagename);
         $announcement           = new Announcement;
-        $request->file('announcement_image')->store('public/images');
-        
-        // ===============================================================
-        // $request->file('announcement_image')->store('images', 'public');
-        // $announcement           = new Announcement;
         $announcement->title    = $request->announcement_title;
         $announcement->detail   = $request->announcement_detail;
-        $announcement->image    = $request->announcement_image;
+        $announcement->image    = $imagename;
         $announcement->save();
-        return redirect('/admin/announcement');
+        return redirect()->back();
     }
 
     /**
