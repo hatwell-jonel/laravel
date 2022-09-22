@@ -40,25 +40,25 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $admin = new Admin;
-        $generator = Helper::IDGenerator($admin,'admin_id', 3, "ADM");
-        $admin->admin_id = $generator;
-        $admin->firstname = $request->admin_firstname;
-        $admin->middlename = $request->admin_middlename;
-        $admin->lastname = $request->admin_lastname;
-        $admin->contact = $request->admin_contact;
-        $admin->email = $request->admin_email;
-        $admin->gender = $request->admin_gender;
-        $admin->birthdate = $request->admin_birthdate;
-        $admin->birthplace = $request->admin_birthplace;
-        $admin->address = $request->admin_address;
+        $admin              = new Admin;
+        $generator          = Helper::IDGenerator($admin,'admin_id', 3, "ADM");
+        $admin->admin_id    = $generator;
+        $admin->firstname   = $request->admin_firstname;
+        $admin->middlename  = $request->admin_middlename;
+        $admin->lastname    = $request->admin_lastname;
+        $admin->contact     = $request->admin_contact;
+        $admin->email       = $request->admin_email;
+        $admin->gender      = $request->admin_gender;
+        $admin->birthdate   = $request->admin_birthdate;
+        $admin->birthplace  = $request->admin_birthplace;
+        $admin->address     = $request->admin_address;
         $admin->save();
 
-        $user = new User;
-        $user->name = $request->admin_lastname;
-        $user->user_level = "admin";
-        $user->email =  $request->admin_email;
-        $user->password = Hash::make($request->firstname.$request->lastname);
+        $user               = new User;
+        $user->name         = $request->admin_lastname;
+        $user->user_level   = "admin";
+        $user->email        =  $request->admin_email;
+        $user->password     = Hash::make($request->firstname.$request->lastname);
         $user->save();
 
         return redirect('/admin/accounts');
@@ -95,16 +95,16 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $admin = Admin::find($id);
-        $admin->firstname = $request->admin_firstname;
-        $admin->middlename = $request->admin_middlename;
-        $admin->lastname = $request->admin_lastname;
-        $admin->contact = $request->admin_contact;
-        $admin->email = $request->admin_email;
-        $admin->gender = $request->admin_gender;
-        $admin->birthdate = $request->admin_birthdate;
-        $admin->birthplace = $request->admin_birthplace;
-        $admin->address = $request->admin_address;
+        $admin              = Admin::find($id);
+        $admin->firstname   = $request->admin_firstname;
+        $admin->middlename  = $request->admin_middlename;
+        $admin->lastname    = $request->admin_lastname;
+        $admin->contact     = $request->admin_contact;
+        $admin->email       = $request->admin_email;
+        $admin->gender      = $request->admin_gender;
+        $admin->birthdate   = $request->admin_birthdate;
+        $admin->birthplace  = $request->admin_birthplace;
+        $admin->address     = $request->admin_address;
         $admin->update();
         return redirect('/admin/accounts');
     }

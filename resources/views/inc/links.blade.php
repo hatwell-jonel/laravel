@@ -11,10 +11,6 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    {{-- DATA TABLES --}}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-
-
 
 
 <!-- Bootstrap 3.3.7 -->
@@ -38,6 +34,7 @@
 <link rel="stylesheet" href="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+<link rel="stylesheet" href="{{asset('../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 
 <!-- jQuery 3 -->
 <script defer src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
@@ -58,7 +55,7 @@
 <script defer src="{{asset('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
 <script defer src="{{asset('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
 <!-- jQuery Knob Chart -->
-<script defer src="{{asset('bower_components/jquery-knob/dist/jquery.knob.min.js"')}}></script>
+<script defer src="{{asset('bower_components/jquery-knob/dist/jquery.knob.min.js')}}"></script>
 <!-- daterangepicker -->
 <script defer src="{{asset('bower_components/moment/min/moment.min.js')}}"></script>
 <script defer src="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
@@ -76,5 +73,3 @@
 <script defer src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script defer src="{{asset('dist/js/demo.js')}}"></script>
-
-<script defer src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>

@@ -19,7 +19,7 @@
                 </form>
             </div>
         </div>
-        <table class="table">
+        <table class="table" id="studentsTable">
             <thead>
             <tr>
                 <th scope="col">Student #</th>
@@ -54,6 +54,7 @@
                                 @include('modal.editStudent')
                                 {{-- <button class="btn btn-success"> <i class="fa fa-edit"></i></button> --}}
 
+                              
                                 {!! Form::open(['action' => ['StudentController@destroy', $student->id], 'method' => 'SUBMIT']) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}
                                     <button class="btn btn-danger" type="submit"> <i class="fa  fa-trash"></i></button>
@@ -68,8 +69,3 @@
         </table>
     </div>
 @endsection
-
-
-@push('script')
-    console.log('asasd');
-@endpush

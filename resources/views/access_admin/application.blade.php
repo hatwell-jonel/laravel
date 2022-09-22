@@ -9,4 +9,8 @@
 @section('content')
     <!--  content is in admin/index -->
     @yield('application')
+
+    @stack('script')
 @endsection
+
+

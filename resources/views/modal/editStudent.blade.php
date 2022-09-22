@@ -1,5 +1,5 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-editStudent">
-    <i class="fa fa-edit"></i>
+<button type="button" class="btn btn-primary editModal" data-toggle="modal" data-target="#modal-editStudent" data-url={{ url('students/'.$student->id.'/edit')}}>
+    <i class="fa fa-edit" ></i>
  </button>
  
  
@@ -83,3 +83,6 @@
          </div>
      </div>
  </div>
+
+
+

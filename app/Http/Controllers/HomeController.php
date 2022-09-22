@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use App\Admin;
+use App\Announcement;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -37,7 +38,9 @@ class HomeController extends Controller
 
     public function announcementPage(){
         $pageTitle = 'announcement';
-        return view('access_admin.announcement')->with('title', $pageTitle);
+        $announcements = Announcement::all();
+        // return view('access_admin.announcement')->with('title', $pageTitle);
+        return view('announcement.index')->with('title', $pageTitle)->with('announcements', $announcements);
     }
    
     public function accountsPage(){

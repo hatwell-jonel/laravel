@@ -14,6 +14,9 @@
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     @include('inc.links')
+
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div id="app">
@@ -69,8 +72,6 @@
         @include('inc.sidebar')
 
         <main class="content-wrapper">
-            
-
                 @yield('content_header')
 
               <section class="content">
@@ -79,10 +80,6 @@
         </main>
     </div>
 
-    <script>
-        $( document ).ready(function() {
-            console.log( "ready!" );
-        });
-    </script>
+    @yield('script')
 </body>
 </html>

@@ -87,7 +87,7 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Student::find($id);
     }
 
     /**
