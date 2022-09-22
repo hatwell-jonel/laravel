@@ -4,6 +4,18 @@
 {{--  --}}
 {{-- ADMINLTE --}}
 {{--  --}}
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    {{-- DATA TABLES --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+
+
 
 <!-- Bootstrap 3.3.7 -->
 <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -32,8 +44,8 @@
 <!-- jQuery UI 1.11.4 -->
 <script defer src="{{asset('bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-$.widget.bridge('uibutton', $.ui.button);
+<script defer>
+    $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script defer src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
@@ -64,3 +76,5 @@ $.widget.bridge('uibutton', $.ui.button);
 <script defer src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script defer src="{{asset('dist/js/demo.js')}}"></script>
+
+<script defer src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>

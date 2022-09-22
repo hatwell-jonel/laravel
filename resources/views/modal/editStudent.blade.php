@@ -14,7 +14,7 @@
          <div class="modal-body">
                  {!! Form::open(["action" => ["StudentController@update", $student->id], "method" => "POST" , "class" => "addForm border border-danger"]) !!}
                      @csrf
-                     <div class="row">
+                        <div class="row">
                          <div class="form-group col-md-4">
                              <label for="name">Firstname:</label>
                              <span class="text-danger">*</span>
@@ -47,7 +47,7 @@
                                 {{Form::label("", "Gender")}}
                                 <span class="text-danger">*</span>
                                 <select name="gender" class="form-control">
-                                    <option value="{{$student->gender}}" selected>{{$student->gender}}</option>
+                                    <option value="{{$student->gender}}" hidden selected>{{$student->gender}}</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                 </select>

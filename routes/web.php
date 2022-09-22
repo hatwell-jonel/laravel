@@ -31,6 +31,9 @@ Route::group(['prefix'=>'admin'], function(){
 
 
 Route::resource('/students', "StudentController");
+Route::resource('/admin', "AdminController");
+
+
 
 // PDF
 Route::post('/pdf', 'ExportImportController@viewPDF')->name('pdf');

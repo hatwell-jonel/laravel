@@ -68,3 +68,8 @@
         </table>
     </div>
 @endsection
+
+
+@push('script')
+    console.log('asasd');
+@endpush

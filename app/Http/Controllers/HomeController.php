@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Admin;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -41,6 +42,9 @@ class HomeController extends Controller
    
     public function accountsPage(){
         $pageTitle = 'accounts';
-        return view('access_admin.accounts')->with('title', $pageTitle);
+        $admins = Admin::All();
+        
+        // return view('access_admin.accounts')->with('title', $pageTitle);
+        return view('users.index')->with('title', $pageTitle)->with('admins', $admins);
     }
 }

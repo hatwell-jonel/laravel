@@ -58,7 +58,7 @@ class StudentController extends Controller
 
         $user = new User;
         $user->name = $request->lastname;
-        $user->user_level = "admin";
+        $user->user_level = "student";
         $user->email = $request->email;
         $user->password = Hash::make($request->firstname.$request->lastname);
         $user->save();
