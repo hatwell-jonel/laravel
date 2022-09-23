@@ -29,8 +29,6 @@ class StudentImport implements ToModel, WithHeadingRow,SkipsOnError
         $student = new Student;
         $generator = Helper::IDGenerator($student,'student_id', 5, date('Y'));
 
-
-
         return [new Student([
             // Column name at the database
             'student_id'    => $generator,
@@ -43,11 +41,12 @@ class StudentImport implements ToModel, WithHeadingRow,SkipsOnError
             'birthdate'     => $row['birthdate'],
             'birthplace'    => $row['birthplace'],
             'address'       => $row['address'],
-            ]), User::create([
-                'user_level'=> 'students',
-                'name'      =>   $row['firstname'].$row['lastname'],
-                'email'     => $generator.'@'.'email'.'.com',
-                'password'  => bcrypt($generator.$row['lastname']),
+            ]), 
+                User::create([
+                    'user_level'    => 'student',
+                    'name'          =>   $row['firstname'].$row['lastname'],
+                    'email'         => $generator.'@'.'email'.'.com',
+                    'password'      => bcrypt($generator.$row['lastname']),
             ])
         ];
     }

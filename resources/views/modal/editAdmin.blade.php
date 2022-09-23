@@ -1,9 +1,9 @@
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-editAdmin">
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-editAdmin{{$admin->admin_id}}">
     <i class="fa fa-edit"></i>
  </button>
  
  
-    <div class="modal fade" id="modal-editAdmin">
+<div class="modal fade" id="modal-editAdmin{{$admin->admin_id}}">
      <div class="modal-dialog  modal-xl" style="min-width: 1000px;">
          <div class="modal-content">
          <div class="modal-header">

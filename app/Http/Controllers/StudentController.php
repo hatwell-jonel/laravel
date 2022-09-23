@@ -41,28 +41,28 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $student = new Student;
-        $generator = Helper::IDGenerator($student,'student_id', 5, date('Y'));
+        $student    = new Student;
+        $generator  = Helper::IDGenerator($student,'student_id', 5, date('Y'));
 
-        $student->student_id = $generator;
-        $student->firstname = $request->firstname;
-        $student->middlename = $request->middlename;
-        $student->lastname = $request->lastname;
-        $student->contact = $request->contact;
-        // $student->email = $request->email;
-        $student->email = $generator.'@'.'email'.'.com';
-        $student->gender = $request->gender;
-        $student->birthdate = $request->birthdate;
-        $student->birthplace = $request->birthplace;
-        $student->address = $request->address;
+        $student->student_id    = $generator;
+        $student->firstname     = $request->firstname;
+        $student->middlename    = $request->middlename;
+        $student->lastname      = $request->lastname;
+        $student->contact       = $request->contact;
+        $student->email         = $generator.'@'.'email'.'.com';
+        $student->gender        = $request->gender;
+        $student->birthdate     = $request->birthdate;
+        $student->birthplace    = $request->birthplace;
+        $student->address       = $request->address;
         $student->save();
 
-        $user = new User;
-        $user->name = $request->lastname;
-        $user->user_level = "student";
-        // $user->email = $request->email;
-        $user->email = $generator.'@'.'gmail'.'.com';
-        $user->password = Hash::make($request->firstname.$request->lastname);
+        $user                   = new User;
+        $user->name             = $request->lastname;
+        $user->user_level       = "student";
+        // $user->email         = $request->email;
+        $user->email            = $generator.'@'.'gmail'.'.com';
+        $user->password         = Hash::make($generator.$request->lastname);
+        // $user->password         = $generator;
         $user->save();
 
         return redirect('/students')->with("message", 'Created');
@@ -101,16 +101,16 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $student = Student::find($id);
-        $student->firstname = $request->firstname;
-        $student->middlename = $request->middlename;
-        $student->lastname = $request->lastname;
-        $student->contact = $request->contact;
-        $student->email = $request->email;
-        $student->gender = $request->gender;
-        $student->birthdate = $request->birthdate;
-        $student->birthplace = $request->birthplace;
-        $student->address = $request->address;
+        $student                = Student::find($id);
+        $student->firstname     = $request->firstname;
+        $student->middlename    = $request->middlename;
+        $student->lastname      = $request->lastname;
+        $student->contact       = $request->contact;
+        $student->email         = $request->email;
+        $student->gender        = $request->gender;
+        $student->birthdate     = $request->birthdate;
+        $student->birthplace    = $request->birthplace;
+        $student->address       = $request->address;
         $student->update();
         return redirect('/students');
     }
@@ -124,7 +124,9 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $student = Student::find($id);
+        $user = User::find($id);
         $student->delete();
-        return redirect('/students');
+        $user->delete();
+        return redirect()->back();
     }
 }

@@ -10,33 +10,41 @@
 @section('admin_announcement')
     <div class="container-fluid">
         @include('modal.addAnnouncement')
-        <table class="table">
+        <table class="table table-striped table-dark">
             <thead>
               <tr>
                 <th scope="col">id</th>
                 <th scope="col">Title</th>
-                <th scope="col">Description</th>
+                <th scope="col" style="word-wrap: break-word;
+                width: 700px;">Description</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
                 @if(count($announcements) >= 1)
-                @foreach($announcements as $announcement)
-                    <tr>
-                        <th scope="row">{{$announcement->id}}</th>
-                        <td>{{$announcement->title}}</td>
-                        <td>{!!    $announcement->detail !!}</td>
-                        <td>{{date('M d, Y' , strtotime($announcement->created_at))}}</td>
-                        <td style="display: flex; gap: 5px">
-                            <button class="btn btn-info">edit</button>
+                    @foreach($announcements as $announcement)
+                        <tr>
+                            <th scope="row">{{$announcement->id}}</th>
+                            <td>{{$announcement->title}}</td>
+                            <td>{!!    $announcement->detail !!}</td>
+                            {{-- <td>
+                                <img src="{{asset('images/'.$announcement->image)}}" alt="image">
+                            </td> --}}
+                            <td>{{date('M d, Y' , strtotime($announcement->created_at))}}</td>
+                            <td style="display: flex; gap: 5px">
 
-                            {!! Form::open(['action' => ['AnnouncementController@destroy', $announcement->id], 'method' => 'SUBMIT']) !!}
-                                {!! Form::hidden('_method', 'DELETE') !!}
-                                <button class="btn btn-danger" type="submit"> <i class="fa  fa-trash"></i></button>
-                            {!! Form::close() !!}
-                        </td>
-                    </tr>
-                @endforeach
+
+                                @include('modal.showAnnouncement')
+                                @include('modal.editAnnouncement')
+                                {{-- <button class="btn btn-info">edit</button> --}}
+
+                                {!! Form::open(['action' => ['AnnouncementController@destroy', $announcement->id], 'method' => 'SUBMIT']) !!}
+                                    {!! Form::hidden('_method', 'DELETE') !!}
+                                    <button class="btn btn-danger" type="submit"> <i class="fa  fa-trash"></i></button>
+                                {!! Form::close() !!}
+                            </td>
+                        </tr>
+                    @endforeach
                  
                     @else
                     <p>No data found</p>
@@ -51,6 +59,11 @@
     <script>
         ClassicEditor
             .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+        ClassicEditor
+            .create( document.querySelector( '#update_editor' ) )
             .catch( error => {
                 console.error( error );
             } );

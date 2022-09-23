@@ -39,12 +39,16 @@ class AnnouncementController extends Controller
         //getMimeType()
         //getSize()
         //getClientOriginalName()
-        $imagename = time() . '-' .  $request->announcement_title . '.' . $request->announcement_image->guessExtension();
-        $request->announcement_image->move(public_path('images'), $imagename);
         $announcement           = new Announcement;
         $announcement->title    = $request->announcement_title;
-        $announcement->detail   = $request->announcement_detail;
-        $announcement->image    = $imagename;
+        $announcement->detail   = $request->announcement_detail;    
+        if($request->hasFile('announcement_image')){
+            $imagename = 'image-'. time()  . '.' . $request->announcement_image->guessExtension();
+            $request->announcement_image->move(public_path('images'), $imagename);
+            $announcement->image    = $imagename;
+        }else{
+            $announcement->image    = null;
+        }
         $announcement->save();
         return redirect()->back();
     }
@@ -68,7 +72,7 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Announcement::find($id);
     }
 
     /**
@@ -80,7 +84,12 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $announcement              = Announcement::find($id);
+        $announcement->title       = $request->announcement_title;
+        $announcement->detail       = $request->announcement_detail;
+        $announcement->image       = $request->announcement_image;
+        $announcement->update();
+        return redirect()->back();
     }
 
     /**

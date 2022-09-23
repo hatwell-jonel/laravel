@@ -47,7 +47,7 @@ class AdminController extends Controller
         $admin->middlename  = $request->admin_middlename;
         $admin->lastname    = $request->admin_lastname;
         $admin->contact     = $request->admin_contact;
-        $admin->email       = $request->admin_email;
+        $admin->email       = $generator."@email.com";
         $admin->gender      = $request->admin_gender;
         $admin->birthdate   = $request->admin_birthdate;
         $admin->birthplace  = $request->admin_birthplace;
@@ -57,8 +57,9 @@ class AdminController extends Controller
         $user               = new User;
         $user->name         = $request->admin_lastname;
         $user->user_level   = "admin";
-        $user->email        =  $request->admin_email;
-        $user->password     = Hash::make($request->firstname.$request->lastname);
+        // $user->email        =  $request->admin_email;
+        $user->email        =  $generator."@email.com";
+        $user->password     = Hash::make($generator.$request->admin_lastname);
         $user->save();
 
         return redirect('/admin/accounts');
@@ -118,7 +119,9 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $admin = Admin::find($id);
+        $user = User::find($id);
         $admin->delete();
+        $user->delete();
         return redirect('/admin/accounts');
     }
 }

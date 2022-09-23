@@ -1,9 +1,9 @@
-<button type="button" class="btn btn-primary editModal" data-toggle="modal" data-target="#modal-editStudent" data-url={{ url('students/'.$student->id.'/edit')}}>
+<button type="button" class="btn btn-primary editModal" data-toggle="modal" data-target="#modal-editStudent{{$student->student_id}}">
     <i class="fa fa-edit" ></i>
  </button>
  
  
- <div class="modal fade" id="modal-editStudent">
+ <div class="modal fade" id="modal-editStudent{{$student->student_id}}">
      <div class="modal-dialog  modal-xl" style="min-width: 1000px;">
          <div class="modal-content">
          <div class="modal-header">
