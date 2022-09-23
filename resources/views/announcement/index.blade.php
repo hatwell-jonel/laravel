@@ -26,7 +26,7 @@
                         <tr>
                             <th scope="row">{{$announcement->id}}</th>
                             <td>{{$announcement->title}}</td>
-                            <td>{!!    $announcement->detail !!}</td>
+                            <td style="overflow: scroll !important;">{!!    $announcement->detail !!}</td>
                             {{-- <td>
                                 <img src="{{asset('images/'.$announcement->image)}}" alt="image">
                             </td> --}}

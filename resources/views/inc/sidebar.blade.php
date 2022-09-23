@@ -39,17 +39,17 @@
         </li>
         <li class="active">
           <a href="{{route('application')}}">
-            <i class="fa fa-dashboard"></i> <span>Application</span>
+            <i class="fa  fa-bars"></i> <span>Application</span>
           </a>
         </li>
         <li class="active">
           <a href="{{route('announcement')}}">
-            <i class="fa fa-dashboard"></i> <span>Announcement</span>
+            <i class="fa  fa-sticky-note"></i> <span>Announcement</span>
           </a>
         </li>
         <li class="active">
           <a href="{{route('accounts')}}">
-            <i class="fa fa-dashboard"></i> <span>Accounts</span>
+            <i class="fa fa-users"></i> <span>Accounts</span>
           </a>
         </li>
       </ul>
