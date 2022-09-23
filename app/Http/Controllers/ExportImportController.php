@@ -6,7 +6,9 @@ use App\Student;
 use Illuminate\Http\Request;
 use PDF;
 use App\Exports\StudentExport;
+use App\Imports\StudentImport;
 use Excel;
+use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 
 class ExportImportController extends Controller
 {
@@ -18,5 +20,20 @@ class ExportImportController extends Controller
 
     public function exportExcel(){
         return Excel::download(new StudentExport, 'students.xls');
+    }
+    public function importExcel(){
+        return view('files.importfile');
+    }
+
+    public function importFile(Request $request){
+
+        $import = new StudentImport;
+        $file = $request->file('file');
+
+        Excel::import($import, $file);
+
+        // $import->import($request->file('file')->store('import'));
+
+        return redirect()->route('application')->with('success', 'Import Successully.');
     }
 }

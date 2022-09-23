@@ -44,7 +44,7 @@
                         <div class="col-md-4">
                             {{Form::label("", "Email")}}
                             <span class="text-danger">*</span>
-                            <input type="email" name="email" class="form-control">
+                            <input type="email" name="email" class="form-control" placeholder="Autogenerate Email" disabled>
                         </div>
 
                         <div class="col-md-4">

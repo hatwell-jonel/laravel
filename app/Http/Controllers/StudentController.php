@@ -49,7 +49,8 @@ class StudentController extends Controller
         $student->middlename = $request->middlename;
         $student->lastname = $request->lastname;
         $student->contact = $request->contact;
-        $student->email = $request->email;
+        // $student->email = $request->email;
+        $student->email = $generator.'@'.'email'.'.com';
         $student->gender = $request->gender;
         $student->birthdate = $request->birthdate;
         $student->birthplace = $request->birthplace;
@@ -59,7 +60,8 @@ class StudentController extends Controller
         $user = new User;
         $user->name = $request->lastname;
         $user->user_level = "student";
-        $user->email = $request->email;
+        // $user->email = $request->email;
+        $user->email = $generator.'@'.'gmail'.'.com';
         $user->password = Hash::make($request->firstname.$request->lastname);
         $user->save();
 

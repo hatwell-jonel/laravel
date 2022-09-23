@@ -16,7 +16,6 @@
                 <th scope="col">id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
-                <th scope="col">Description</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -26,14 +25,15 @@
                     <tr>
                         <th scope="row">{{$announcement->id}}</th>
                         <td>{{$announcement->title}}</td>
-                        <td>{{$announcement->detail}}</td>
-                        <!-- <td>
-                            <img class="imagedone" style="width: 80px;" src="{{ asset('images/'.$announcement->image) }}" alt="image">
-                        </td> -->
+                        <td>{!!    $announcement->detail !!}</td>
                         <td>{{date('M d, Y' , strtotime($announcement->created_at))}}</td>
-                        <td>
-                            <button class="btn btn-warning">edit</button>
-                            <button class="btn btn-danger">delete</button>
+                        <td style="display: flex; gap: 5px">
+                            <button class="btn btn-info">edit</button>
+
+                            {!! Form::open(['action' => ['AnnouncementController@destroy', $announcement->id], 'method' => 'SUBMIT']) !!}
+                                {!! Form::hidden('_method', 'DELETE') !!}
+                                <button class="btn btn-danger" type="submit"> <i class="fa  fa-trash"></i></button>
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach

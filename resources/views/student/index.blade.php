@@ -5,13 +5,14 @@
         <div style="display: flex; align-items:center; justify-content:space-between;">
             @include('modal.addStudent')
 
-            <div class="">
+            <div style="display: flex; gap: 10px;">
                 <form action="{{route('pdf')}}" method="post" target="_blank">
                     @csrf
                     <button class="btn btn-warning"> <i class="fa fa-download"></i> PDF </button>
                 </form>
                 
-                <button class="btn btn-success"> <i class="fa fa-download"></i> EXCEL </button>
+                <a href="{{route('import-excel')}}"  class="btn btn-success"><i class="fa fa-download"></i> EXCEL</a>
+                {{-- <button class="btn btn-success"> <i class="fa fa-download"></i> EXCEL </button> --}}
 
                 <form action="{{route('export-excel')}}">
                     @csrf

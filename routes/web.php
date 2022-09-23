@@ -36,5 +36,8 @@ Route::resource('/announcement', "AnnouncementController");
 
 // PDF
 Route::post('/pdf', 'ExportImportController@viewPDF')->name('pdf');
-// Excel
+// Excel Export
 Route::get('/export-excel', 'ExportImportController@exportExcel')->name('export-excel');
+// Excel Import
+Route::get('/import-excel', 'ExportImportController@importExcel')->name('import-excel');
+Route::post('/import', 'ExportImportController@importFile')->name('student-import');
