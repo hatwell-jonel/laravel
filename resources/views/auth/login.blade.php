@@ -9,7 +9,7 @@
             <p>Polytechnic University of the Philippines</p>
 
             <a href="/">
-                <img src="https://o.remove.bg/downloads/eecfa588-0ac9-4b1f-8cec-53da79db9b3f/download-removebg-preview.png" alt="school logo">
+                <img src="{{asset('local_assets/pupLogo.webp')}}" class="school_logo" alt="school logo">
             </a>
         </div>
         <div class="col-md-6 login_box-right">

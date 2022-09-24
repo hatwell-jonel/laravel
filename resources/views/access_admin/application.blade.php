@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <!--  content is in admin/index -->
+    <!--  content is in student/index -->
     @yield('application')
 
     @stack('script')

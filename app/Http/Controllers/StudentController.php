@@ -41,6 +41,14 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'firstname' => 'required',
+            'middlename' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'contact' => 'required',
+        ]);
+        
         $student    = new Student;
         $generator  = Helper::IDGenerator($student,'student_id', 5, date('Y'));
 

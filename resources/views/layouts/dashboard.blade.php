@@ -14,9 +14,16 @@
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     @include('inc.links')
-
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
+ 
+ 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div id="app">
@@ -73,13 +80,15 @@
 
         <main class="content-wrapper">
                 @yield('content_header')
-
+                
               <section class="content">
                   @yield('content')
               </section>
         </main>
     </div>
 
-    @yield('script')
 </body>
 </html>
+
+
+

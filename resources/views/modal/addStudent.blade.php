@@ -12,7 +12,7 @@
             <h4 class="modal-title">Add new Student</h4>
         </div>
         <div class="modal-body">
-                {!! Form::open(["action" => "StudentController@store", "method" => "POST" , "class" => "addForm border border-danger"]) !!}
+                {!! Form::open(["action" => "StudentController@store", "method" => "POST" , "class" => "addForm"]) !!}
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-4">
@@ -83,7 +83,7 @@
                     
                     <div class="row" style="margin-top: 20px;">
                         <div class="col-md-12">
-                            <button class="btn btn-primary"type="submit">add student</button>
+                            <button class="btn btn-primary btn_add_student" type="submit">add student</button>
                         </div>
                     </div>
                 {!! Form::close() !!}  
@@ -95,3 +95,14 @@
         </div>
     </div>
 </div>
+
+{{-- <script defer>
+
+
+    const BtnAddStudent = document.querySelector('.btn_add_student');
+
+    BtnAddStudent.addEventListener('submit', (e) =>{
+        e.preventDefault();
+        console.log('asdasd');
+    })
+</script> --}}

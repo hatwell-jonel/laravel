@@ -6,6 +6,8 @@ use App\Student;
 use App\Admin;
 use App\Announcement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -26,9 +28,39 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'dashboard';
-        return view('access_admin.dashboard')->with('title', $pageTitle);
+        // 
+        $data = DB::table('students')
+            ->select(
+            DB::raw('gender as gender'),
+            DB::raw('count(*) as number'))
+            ->groupBy('gender')
+            ->get();
+
+        $array[] = ['Gender', 'Number'];
+
+        foreach($data as $key => $value)
+        {
+            $array[++$key] = [$value->gender, $value->number];
+        }
+
+        // 
+        $studentApplications = DB::table('students')
+                    ->select(
+                        DB::raw("day(created_at) as day"),
+                        DB::raw("count(*) as number")) 
+                    ->groupBy(DB::raw("day(created_at)"))
+                    ->get();
+
+
+        $result[] = ['Application', 'Number'];
+
+        foreach ($studentApplications as $key => $value) {
+            $result[++$key] = [$value->day, $value->number];
+        }
+
+       return view('charts.charts')->with('gender', json_encode($array))->with('application',json_encode($result));
     }
+
 
     public function applicationPage()
     {

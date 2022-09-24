@@ -3,6 +3,13 @@
 @section('application')
     <div class="container-fluid">
         <div style="display: flex; align-items:center; justify-content:space-between;">
+            {{-- @if($errors->any())
+                <div>
+                    @foreach($errors->all() as $error)
+                        <span  class="text-danger">{{$error}}</span>
+                    @endforeach
+                </div>
+            @endif --}}
             @include('modal.addStudent')
 
             <div style="display: flex; gap: 10px;">

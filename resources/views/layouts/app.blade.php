@@ -46,6 +46,10 @@
 
         .login_box-left{
             padding: 20px 10px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .login_box-left p{
@@ -59,6 +63,7 @@
         }
 
         .login_box-right{
+            padding-bottom:21px;
             background-color: #7B1006;
         }
 
@@ -78,6 +83,13 @@
             border: 1px solid white;
             background-color: transparent;
             color: white;
+        }
+
+        .school_logo{
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            
         }
     </style>
 </head>

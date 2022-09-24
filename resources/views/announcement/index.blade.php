@@ -36,6 +36,9 @@
 
                                 @include('modal.showAnnouncement')
                                 @include('modal.editAnnouncement')
+
+
+                                
                                 {{-- <button class="btn btn-info">edit</button> --}}
 
                                 {!! Form::open(['action' => ['AnnouncementController@destroy', $announcement->id], 'method' => 'SUBMIT']) !!}
