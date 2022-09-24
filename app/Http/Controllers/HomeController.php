@@ -18,7 +18,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $array = ['auth', 'isAdmin'];
+        $this->middleware($array);
     }
 
     /**
@@ -58,7 +59,7 @@ class HomeController extends Controller
             $result[++$key] = [$value->day, $value->number];
         }
 
-       return view('charts.charts')->with('gender', json_encode($array))->with('application',json_encode($result));
+       return view('chart.charts')->with('gender', json_encode($array))->with('application',json_encode($result));
     }
 
 
