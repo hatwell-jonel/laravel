@@ -65,12 +65,19 @@ class StudentController extends Controller
         $student->save();
 
         $user                   = new User;
-        $user->name             = $request->lastname;
         $user->user_level       = "student";
-        // $user->email         = $request->email;
-        $user->email            = $generator.'@'.'gmail'.'.com';
+        $user->account_id       = $generator;
+        $user->firstname        = $request->firstname;
+        $user->middlename       = $request->middlename;
+        $user->lastname         = $request->lastname;
+        $user->gender           = $request->gender;
+        $user->birthplace       = $request->birthplace;
+        $user->birthdate        = $request->birthdate;
+        $user->contact          = $request->contact;
+        $user->address          = $request->address;
+        $user->name             = $request->firstname. ' ' . $request->lastname;
+        $user->email            = $generator.'@'.'student'.'.com';
         $user->password         = Hash::make($generator.$request->lastname);
-        // $user->password         = $generator;
         $user->save();
 
         return redirect('/students')->with("message", 'Created');

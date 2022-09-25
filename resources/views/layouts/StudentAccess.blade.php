@@ -30,7 +30,7 @@
         @include('inc.student_sidebar')
 
         <main class="content-wrapper">
-                @yield('content_header')
+                @yield('header_content')
                 
               <section class="content">
                   @yield('content')

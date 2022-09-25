@@ -55,10 +55,18 @@ class AdminController extends Controller
         $admin->save();
 
         $user               = new User;
-        $user->name         = $request->admin_lastname;
         $user->user_level   = "admin";
-        // $user->email        =  $request->admin_email;
-        $user->email        =  $generator."@email.com";
+        $user->account_id   = $generator;
+        $user->firstname    = $request->admin_firstname;
+        $user->middlename   = $request->admin_middlename;
+        $user->lastname     = $request->admin_lastname;
+        $user->gender       = $request->admin_gender;
+        $user->birthplace   = $request->admin_birthplace;
+        $user->birthdate    = $request->admin_birthdate;
+        $user->contact      = $request->admin_contact;
+        $user->address      = $request->admin_address;
+        $user->name         = $request->admin_firstname." " .$request->admin_lastname;
+        $user->email        =  $generator."@admin.com";
         $user->password     = Hash::make($generator.$request->admin_lastname);
         $user->save();
 

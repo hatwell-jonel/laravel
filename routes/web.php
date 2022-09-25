@@ -22,15 +22,7 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 
-// Route::group(['prefix'=>'admin'], function(){
-//     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
-//     Route::get('/application', 'HomeController@applicationPage')->name('application');
-//     Route::get('/announcement', 'HomeController@announcementPage')->name('announcement');
-//     Route::get('/accounts', 'HomeController@accountsPage')->name('accounts');
-// });
-
-
-Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
+Route::group(['prefix'=>'admin'], function(){
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
     Route::get('/application', 'HomeController@applicationPage')->name('application');
     Route::get('/announcement', 'HomeController@announcementPage')->name('announcement');
@@ -38,8 +30,17 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
 });
 
 
+// Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
+//     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+//     Route::get('/application', 'HomeController@applicationPage')->name('application');
+//     Route::get('/announcement', 'HomeController@announcementPage')->name('announcement');
+//     Route::get('/accounts', 'HomeController@accountsPage')->name('accounts');
+// });
+
+
 Route::get('/student/announcement', 'StudentAccessController@announcementPage');
-Route::get('/student/profile', 'StudentAccessController@profilePage');
+// Route::get('/student/profile', 'StudentAccessController@profilePage');
+Route::get('/', 'StudentAccessController@profilePage');
 
 
 Route::resource('/students', "StudentController");

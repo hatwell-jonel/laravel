@@ -7,7 +7,7 @@
           <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
         </div>
         <div>
-          <p style="font-size: 2rem;" class="text-white">{{ Auth::user()->name }}</p>
+          <p style="font-size: 2rem;" class="text-white">name</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
 
@@ -39,7 +39,7 @@
           </a>
         </li>
       </ul>
-      <!-- {{-- <ul class="sidebar-menu" data-widget="tree">
+      <!-- {{-- Auth::user()->name <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
           <a href="#">
