@@ -4,5 +4,4 @@
 
 @section('content')
     @yield('admin_announcement')
-
 @endsection

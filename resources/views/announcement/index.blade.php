@@ -36,8 +36,6 @@
 
                                 @include('modal.showAnnouncement')
                                 @include('modal.editAnnouncement')
-
-
                                 
                                 {{-- <button class="btn btn-info">edit</button> --}}
 

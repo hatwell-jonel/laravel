@@ -39,13 +39,15 @@ Route::group(['prefix'=>'admin'], function(){
 
 
 Route::get('/student/announcement', 'StudentAccessController@announcementPage');
-// Route::get('/student/profile', 'StudentAccessController@profilePage');
-Route::get('/', 'StudentAccessController@profilePage');
+Route::get('/student/profile', 'StudentAccessController@profilePage');
 
+Route::post('/student/profile', 'StudentAccessController@storeImage');
 
 Route::resource('/students', "StudentController");
 Route::resource('/admin', "AdminController");
+// Route::resource('/', "StudentProfileController");
 Route::resource('/announcement', "AnnouncementController");
+
 
 // PDF
 Route::post('/pdf', 'ExportImportController@viewPDF')->name('pdf');
