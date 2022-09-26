@@ -20,7 +20,8 @@ class AdminMiddleware
             if(Auth::user()->user_level == "admin"){
                 return $next($request);
             }else{
-                return redirect()->back();
+
+                return redirect('student/announcement');
             }
         }else{
             return redirect("/login");

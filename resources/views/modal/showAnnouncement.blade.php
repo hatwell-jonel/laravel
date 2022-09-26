@@ -9,12 +9,21 @@
          <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
              <span aria-hidden="true">&times;</span></button>
-             <h1 style="padding: 0; margin:0;"">ANNOUNCEMENT!!!</h1>
+             <h1 style="padding: 0; margin:0;">ANNOUNCEMENT!!!</h1>
          </div>
          <div class="modal-body ">
              
-             <section class="img_section" style="width: 100%; margin-inline: auto; border: 1px solid red;">
-                <img src="{{asset('images/'.$announcement->image)}}" style="display: block; width:100%; max-height: 300px;" alt="image">
+             <section class="img_section" style="width: 100%; margin-inline: auto;">
+                @php
+                    $image = DB::table('announcement')->where('id', $announcement->id)->first();
+                    $images = explode('|', $image->image);
+                    // dd($images);
+                @endphp
+                @foreach ($images as $item)
+                    <img src="{{URL::to($item)}}" style="display: block; width:100%; max-height: 300px;" alt="image">
+                @endforeach
+                {{-- ============ --}}
+                {{-- <img src="{{asset('images/'.$announcement->image)}}" style="display: block; width:100%; max-height: 300px;" alt="image"> --}}
             </section>
             <h3 style="padding: 0; margin:0;" class="text-capitalize text-center">{{$announcement->title}}</h3>
             <p class="lead text-left"> {!! $announcement->detail !!}</p>

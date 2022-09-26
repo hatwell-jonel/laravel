@@ -39,6 +39,36 @@ class AnnouncementController extends Controller
         //getMimeType()
         //getSize()
         //getClientOriginalName()
+
+        // dd($request->all());
+
+        // $images = array();
+        // if($files = $request->file('announcement_image')){
+        //     foreach($files as $file){
+        //         $imagename      = md5(rand(1000,10000));
+        //         $ext            = strtolower($file->getClientOriginalExtension());
+        //         $image_fullname = $imagename.'.'.$ext;
+        //         $upload_path    =   'images/announcement/';
+        //         $image_url      = $upload_path.$image_fullname;
+        //         $file->move($upload_path, $image_fullname);
+        //         $images[]       = $image_url;
+        //     }
+        // }
+
+
+        // // $announcement           = new Announcement;
+        // Announcement::insert([
+        //     'title' => $request->announcement_title,
+        //     'detail' =>  $request->announcement_detail,
+        //     'image' => implode('|', $images),
+        // ]);
+
+        // // dd($images);
+
+        // return back();
+
+
+        //==========================
         $announcement           = new Announcement;
         $announcement->title    = $request->announcement_title;
         $announcement->detail   = $request->announcement_detail;    

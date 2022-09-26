@@ -20,7 +20,7 @@ class UserMiddleware
             if(Auth::user()->user_level == "student"){
                 return $next($request);
             }else{
-                return redirect()->back();
+                return redirect('admin/dashboard');
             }
         }else{
             return redirect("/login");

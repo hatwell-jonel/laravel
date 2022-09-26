@@ -78,6 +78,7 @@
 
     </div>
 
+
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"></span>
@@ -96,12 +97,9 @@
             <h2>{{$announcement->title}}</h2>
           </div>
           <img class="announcement_image" src="{{asset('images/' . $announcement->image)}}" alt="announcement photo">
-
           <div class="announcement_detail">
             <p>{{$announcement->detail}}</p>
           </div>
-
-
           <div class="announcement_footer">
             <span>Posted: {{ date('M d, Y | h:i a', strtotime($announcement->created_at))}}</span>
           </div>

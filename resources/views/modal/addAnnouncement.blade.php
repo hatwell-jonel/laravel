@@ -24,7 +24,7 @@
 
                         <div class="form-group col-md-6">
                             {{Form::label("", "Upload image")}}
-                            <input type="file" class="form-control" name="announcement_image">
+                            <input type="file" class="form-control" name="announcement_image" accept="image/*" />
                         </div>
                     </div>
                     
@@ -32,7 +32,7 @@
                         <div class="col-md-12">
                             {{Form::label("", "Details")}}
                             <span class="text-danger">*</span>
-                            <textarea name="announcement_detail" id="editor" class="form-control" style="resize: false; color: red;"></textarea>
+                            <textarea name="announcement_detail" id="editor" class="form-control" style="resize: false;"></textarea>
                         </div>
                     </div>
              
