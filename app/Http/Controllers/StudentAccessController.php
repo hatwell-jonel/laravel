@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Announcement;
 use App\User;
+use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,23 +26,61 @@ class StudentAccessController extends Controller
         return view('access_student.announcement')->with('announcements', $announcements);
     }
  
-    public function profilePage(Request $request){
-        return view('access_student.profile');
-    }
+    public function profilePage(){
+        // $students = Student::where('student_id', '=',Auth::user()->account_id)->get();
+        $students = User::all();
+        return view('access_student.profile')->with('students', $students);
+    }   
 
-    public function storeImage(Request $request){
-        // $user = Auth::user();
-        // $user = User::find($id);
-        // dd($user->image);
-        // if($request->hasFile('profile_image')){
-        //     $imagename = 'profile-'. time()  . '.' . $request->profile_image->guessExtension();
-        //     $request->profile_image->move(public_path('images/profile'), $imagename);
-        //     $user->image    = $imagename;
-        //     $user->update();
-        // }else{
-        //     $user->image    = null;
-        // }
-        return view('access_student.profile');
+
+
+
+
+
+    public function storeImage(Request $request, $id){
+        $this->validate($request,[
+            'profile_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+
+        ]);
+        $studentdata = User::find($id);
+        // dd($studentdata);
+
+        $currentfile = $studentdata->image;
+        //dd($currentfile);
+        $userid = $studentdata->account_id;
+
+
+        if($request->hasfile('profile_image'))
+         {
+            $image = array();
+            if($files = $request->file('profile_image')){
+                foreach($files as $file){
+                    $image_name = md5(rand(1000,10000));
+                    $ext = strtolower($file->getClientOriginalExtension());
+                    $image_full_name = $image_name.'.'.$ext;
+                    $upload_path = 'public/images/';
+                    $image_url = $upload_path.$image_full_name;
+                    $file->move($upload_path,$image_full_name);
+                    $image[] = $image_url;
+                }
+            }
+
+
+            if($studentdata->image == "")
+            {
+                $currentfile .= implode('|',$image);
+            }
+            else{
+                $currentfile .= '|'. implode('|',$image);
+
+            }
+
+         }
+            $currentpic = str_replace($studentdata->image,'',$image);
+            $studentdata->image = $image_url;
+            $studentdata->update();
+        // return view('access_student.profile');
+        return redirect('/student/profile')->with('Profile Updated');
     }
 
 }

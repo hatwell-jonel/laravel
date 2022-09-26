@@ -18,12 +18,12 @@
       <ul class="sidebar-menu"  data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-          <a href="">
+          <a href="{{ url('student/announcement/') }}">
            <i class="fa fa-sticky-note"></i> <span>Announcements</span>
           </a>
         </li>
         <li class="active">
-          <a href="">
+          <a href="{{ url('student/profile/') }}">
             <i class="fa fa-user"></i> <span>Profile</span>
           </a>
         </li>

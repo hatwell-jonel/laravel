@@ -94,45 +94,50 @@
 @endsection
 
 @section('content')
+    @foreach($students as $student)
     <div class="container">
-        <div class="col-md-3"></div>
-        <div class="col-md-6" id="profile">
-            <div class="profile_header">
-                <div class="profile_image_container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Emoji_u1f196.svg/1200px-Emoji_u1f196.svg.png" class="profile_header-img" alt="">
+        <form action="{{route('update.profile', $student->id)}}" method="post" enctype="multipart/form-data">
+            {{ @csrf_field() }}
+            @method("PUT")
+            <div class="col-md-3"></div>
+            <div class="col-md-6" id="profile">
+                <div class="profile_header">
+                    <div class="profile_image_container">
+                        <img src="{{ URL::to($student->image) }}" class="profile_header-img" alt="">
+                        
+                        
+                    </div>
                     
+                    <div class="profile_header-name">
+                        <h1>
+                            {{ Auth::user()->name }}
+                        </h1>
+                        <p class="">
+                            {{ Auth::user()->account_id }}
+                        </p>
+                    </div>
                 </div>
-                {!! Form::open(["action" => "StudentAccessController@storeImage", "method" => "POST" , "class" => "input"]) !!}
-                    @csrf
-                    <label for="">Image</label>
-                    <input type="file" name="profile_image">
-                    <button type="submit">change</button>
-                {!! Form::close() !!}  
-
-                <div class="profile_header-name">
-                    <h1>
-                        {{ Auth::user()->name }}
-                    </h1>
-                    <p class="">
-                        {{ Auth::user()->account_id }}
-                    </p>
-                </div>
-            </div>
-            <div class="profile_body">
-                <div class="row">
-                    <p class="col-md-6 info">Contact:  {{ Auth::user()->contact }}</p>
-                    <p class="col-md-6 info">Email:  {{ Auth::user()->email }}</p>
-                </div>
-                <div class="row">
-                    <p class="col-md-6 info">Address:  {{ Auth::user()->address }}</p>
-                    <p class="col-md-6 info">Gender:  {{ Auth::user()->gender }}</p>
-                </div>
-                <div class="row">
-                    <p class="col-md-6 info">Birthplace:  {{ Auth::user()->birthplace }}</p>
-                    <p class="col-md-6 info">Birthdate: {{ date('M d, Y', strtotime(Auth::user()->birthdate))  }}</p>
+                <div class="profile_body">
+                    <div class="row">
+                        <p class="col-md-6 info">Contact:  {{ Auth::user()->contact }}</p>
+                        <p class="col-md-6 info">Email:  {{ Auth::user()->email }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="col-md-6 info">Address:  {{ Auth::user()->address }}</p>
+                        <p class="col-md-6 info">Gender:  {{ Auth::user()->gender }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="col-md-6 info">Birthplace:  {{ Auth::user()->birthplace }}</p>
+                        <p class="col-md-6 info">Birthdate: {{ date('M d, Y', strtotime(Auth::user()->birthdate))  }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <label for="">Image</label>
+            <input type="file" name="profile_image[]" id="upload">
+            <button type="submit">change</button>
+        </form>
+     
     </div>
+    @endforeach
 @endsection

@@ -78,6 +78,7 @@ class StudentController extends Controller
         $user->name             = $request->firstname. ' ' . $request->lastname;
         $user->email            = $generator.'@'.'student'.'.com';
         $user->password         = Hash::make($generator.$request->lastname);
+        $user->image            = 'images/default_profile/user.png';
         $user->save();
 
         return redirect('/students')->with("message", 'Created');

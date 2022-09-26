@@ -39,9 +39,10 @@ Route::group(['prefix'=>'admin'], function(){
 
 
 Route::get('/student/announcement', 'StudentAccessController@announcementPage');
-Route::get('/student/profile', 'StudentAccessController@profilePage');
 
-Route::post('/student/profile', 'StudentAccessController@storeImage');
+Route::get('/student/profile', 'StudentAccessController@profilePage');
+Route::post('/student/profile', 'StudentAccessController@profilePage')->name('student.profile');
+Route::put('/student/profile/{student}', 'StudentAccessController@storeImage')->name('update.profile');
 
 Route::resource('/students', "StudentController");
 Route::resource('/admin', "AdminController");
