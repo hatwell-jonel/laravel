@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-editAdmin{{$admin->admin_id}}">
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-editAdmin{{$admin->admin_id}}" data-tooltip="edit">
     <i class="fa fa-edit"></i>
  </button>
  
@@ -18,17 +18,17 @@
                          <div class="form-group col-md-4">
                              {{Form::label("", "Firstname")}}
                              <span class="text-danger">*</span>
-                             <input type="text" value="{{$admin->firstname}}" class="form-control" name="admin_firstname">
+                             <input type="text" value="{{$admin->firstname}}" class="form-control" name="admin_firstname"  minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required>
                          </div>
                          <div class="form-group col-md-4">
                              {{Form::label("", "Middlename")}}
                              <span class="text-danger">*</span>
-                             <input type="text"  value="{{$admin->middlename}}" class="form-control" name="admin_middlename">
+                             <input type="text"  value="{{$admin->middlename}}" class="form-control" name="admin_middlename"  minlength="2" onkeydown="return /[a-z]/i.test(event.key)">
                          </div>
                          <div class="form-group col-md-4">
                              {{Form::label("", "Lastname")}}
                              <span class="text-danger">*</span>
-                             <input type="text"  value="{{$admin->lastname}}" class="form-control" name="admin_lastname">
+                             <input type="text"  value="{{$admin->lastname}}" class="form-control" name="admin_lastname" minlength="2"  onkeydown="return /[a-z]/i.test(event.key)" required>
                          </div>
  
                      </div>

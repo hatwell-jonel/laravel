@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Announcement;
 use App\User;
 use App\Student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,9 +23,19 @@ class StudentAccessController extends Controller
     }
 
     public function announcementPage(){
-        $announcements = Announcement::All();
-        return view('access_student.announcement')->with('announcements', $announcements);
+        // $announcements = Announcement::All();
+        $students = Student::where('student_id', '=',Auth::user()->account_id)->get();
+        $today = Carbon::now()->format('Y-m-d');
+
+        $announcements = Announcement::whereRaw("'$today' >= start_date and '$today' <= end_date")
+        ->orderBy('id', 'ASC')->get();
+        
+        // return view('access_student.announcement')->with('announcements', $announcements);
+        return view('access_student.announcement',['announcements'=>$announcements],['students' =>$students]);
     }
+
+   
+
  
     public function profilePage(){
         // $students = Student::where('student_id', '=',Auth::user()->account_id)->get();

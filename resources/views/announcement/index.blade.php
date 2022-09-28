@@ -41,7 +41,7 @@
 
                                 {!! Form::open(['action' => ['AnnouncementController@destroy', $announcement->id], 'method' => 'SUBMIT']) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}
-                                    <button class="btn btn-danger" type="submit"> <i class="fa  fa-trash"></i></button>
+                                    <button class="btn btn-danger" type="submit" data-tooltip="delete"> <i class="fa  fa-trash"></i></button>
                                 {!! Form::close() !!}
                             </td>
                         </tr>

@@ -72,6 +72,8 @@ class AnnouncementController extends Controller
         $announcement           = new Announcement;
         $announcement->title    = $request->announcement_title;
         $announcement->detail   = $request->announcement_detail;    
+        $announcement->start_date       = $request->announcement_start;
+        $announcement->end_date       = $request->announcement_end;
         if($request->hasFile('announcement_image')){
             $imagename = 'image-'. time()  . '.' . $request->announcement_image->guessExtension();
             $request->announcement_image->move(public_path('images'), $imagename);

@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-editAnnouncement{{$announcement->id}}">
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-editAnnouncement{{$announcement->id}}" data-tooltip="edit">
     <i class="fa fa-edit"></i>
  </button>
  

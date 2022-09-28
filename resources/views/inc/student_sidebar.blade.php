@@ -4,14 +4,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-        </div>
-        <div>
-          <p style="font-size: 1.5rem; color:white;" class="text-white">name</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a> 
+          <img src="{{asset('local_assets/pupLogo.webp')}}" class="img-circle" alt="User Image">
         </div>
       </div>
-
+     
 
       <!-- sidebar menu: : style can be found in sidebar.less -->
 

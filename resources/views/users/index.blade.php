@@ -1,5 +1,6 @@
 @extends('access_admin.accounts')
 
+
 @section('admin_account')
     <div class="container-fluid">
         <div style="display: flex; align-items:center; justify-content:space-between;">
@@ -30,6 +31,7 @@
                 <th scope="col">email</th>
                 <th scope="col">gender</th>
                 <th scope="col">birthdate</th>
+                <th scope="col">age</th>
                 <th scope="col">birthplace</th>
                 <th scope="col">address</th>
                 <th scope="col">action</th>
@@ -47,13 +49,14 @@
                     <td>{{$admin->email}}</td>
                     <td>{{$admin->gender}}</td>
                     <td>{{$admin->birthdate}}</td>
+                    <td>{{$admin->age}}</td>
                     <td>{{$admin->birthplace}}</td>
                     <td>{{$admin->address}}</td>
                     <td style="display: flex; align-items:center; gap:5px;">
                       @include('modal.editAdmin')
                       {!! Form::open(['action' => ['AdminController@destroy', $admin->id], 'method' => 'SUBMIT']) !!}
                         {!! Form::hidden('_method', 'DELETE') !!}
-                        <button class="btn btn-danger" type="submit"> <i class="fa  fa-trash"></i></button>
+                        <button class="btn btn-danger" type="submit" data-tooltip="delete"> <i class="fa fa-trash"></i></button>
                       {!! Form::close() !!}
                     </td>
                   </tr>

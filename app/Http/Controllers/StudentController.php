@@ -8,7 +8,7 @@ use App\User;
 use App\Helpers\Helper;
 use PHPUnit\TextUI\Help;
 use Illuminate\Support\Facades\Hash;
-
+use Carbon\Carbon;
 
 class StudentController extends Controller
 {
@@ -52,17 +52,21 @@ class StudentController extends Controller
         $student    = new Student;
         $generator  = Helper::IDGenerator($student,'student_id', 5, date('Y'));
 
+        // $years = Carbon::parse($request->birthdate)->age
+
         $student->student_id    = $generator;
         $student->firstname     = $request->firstname;
         $student->middlename    = $request->middlename;
         $student->lastname      = $request->lastname;
         $student->contact       = $request->contact;
-        $student->email         = $generator.'@'.'email'.'.com';
+        $student->email         = $generator.'@student.com';
         $student->gender        = $request->gender;
         $student->birthdate     = $request->birthdate;
         $student->birthplace    = $request->birthplace;
-        $student->address       = $request->address;
+        $student->address       = $request->address; 
+        $student->age           = Carbon::parse($request->birthdate)->age; 
         $student->save();
+
 
         $user                   = new User;
         $user->user_level       = "student";
@@ -79,6 +83,7 @@ class StudentController extends Controller
         $user->email            = $generator.'@'.'student'.'.com';
         $user->password         = Hash::make($generator.$request->lastname);
         $user->image            = 'images/default_profile/user.png';
+        $user->age           = Carbon::parse($request->birthdate)->age; 
         $user->save();
 
         return redirect('/students')->with("message", 'Created');
@@ -125,6 +130,7 @@ class StudentController extends Controller
         $student->email         = $request->email;
         $student->gender        = $request->gender;
         $student->birthdate     = $request->birthdate;
+        $student->age           = Carbon::parse($request->birthdate)->age; 
         $student->birthplace    = $request->birthplace;
         $student->address       = $request->address;
         $student->update();
@@ -140,7 +146,8 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $student = Student::find($id);
-        $user = User::find($id);
+        $student_id = $student->student_id;
+        $user = User::where("account_id", $student_id)->first();
         $student->delete();
         $user->delete();
         return redirect()->back();

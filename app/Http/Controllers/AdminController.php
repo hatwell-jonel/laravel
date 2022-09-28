@@ -7,6 +7,7 @@ use App\User;
 use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 
 class AdminController extends Controller
@@ -40,6 +41,17 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'firstname' => 'required',
+            'middlename' => 'required',
+            'lastname' => 'required',
+            'contact' => 'required',
+            'gender' => 'required',
+            'birthdate' =>  'required',
+            'birthplace' => 'required',
+            'address' =>'required',
+        ]);
+
         $admin              = new Admin;
         $generator          = Helper::IDGenerator($admin,'admin_id', 3, "ADM");
         $admin->admin_id    = $generator;
@@ -47,9 +59,10 @@ class AdminController extends Controller
         $admin->middlename  = $request->admin_middlename;
         $admin->lastname    = $request->admin_lastname;
         $admin->contact     = $request->admin_contact;
-        $admin->email       = $generator."@email.com";
+        $admin->email       = $generator."@admin.com";
         $admin->gender      = $request->admin_gender;
         $admin->birthdate   = $request->admin_birthdate;
+        $admin->age         = Carbon::parse($request->admin_birthdate)->age; 
         $admin->birthplace  = $request->admin_birthplace;
         $admin->address     = $request->admin_address;
         $admin->save();
@@ -63,6 +76,7 @@ class AdminController extends Controller
         $user->gender       = $request->admin_gender;
         $user->birthplace   = $request->admin_birthplace;
         $user->birthdate    = $request->admin_birthdate;
+        $user->age         = Carbon::parse($request->admin_birthdate)->age; 
         $user->contact      = $request->admin_contact;
         $user->address      = $request->admin_address;
         $user->name         = $request->admin_firstname." " .$request->admin_lastname;
@@ -112,6 +126,7 @@ class AdminController extends Controller
         $admin->email       = $request->admin_email;
         $admin->gender      = $request->admin_gender;
         $admin->birthdate   = $request->admin_birthdate;
+        $admin->age         = Carbon::parse($request->admin_birthdate)->age; 
         $admin->birthplace  = $request->admin_birthplace;
         $admin->address     = $request->admin_address;
         $admin->update();
@@ -127,9 +142,11 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $admin = Admin::find($id);
-        $user = User::find($id);
+        $admin_id = $admin->admin_id;
+        $user = User::where("account_id", $admin_id)->first();
+        // dd($user, $admin,$id,$admin_id);  
         $admin->delete();
         $user->delete();
-        return redirect('/admin/accounts');
+        return redirect()->back();;
     }
 }

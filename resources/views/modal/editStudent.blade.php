@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary editModal" data-toggle="modal" data-target="#modal-editStudent{{$student->student_id}}">
+<button type="button" class="btn btn-primary editModal" data-toggle="modal" data-tooltip="edit" data-target="#modal-editStudent{{$student->student_id}}">
     <i class="fa fa-edit" ></i>
  </button>
  
@@ -18,17 +18,17 @@
                          <div class="form-group col-md-4">
                              <label for="name">Firstname:</label>
                              <span class="text-danger">*</span>
-                             <input type="text" class="form-control" name="firstname" value="{{$student->firstname}}">
+                             <input type="text" class="form-control" name="firstname" value="{{$student->firstname}}" minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required>
                          </div>
                          <div class="form-group col-md-4">
                             <label for="name">Middlename:</label>
                              <span class="text-danger">*</span>
-                             <input type="text" class="form-control" name="middlename" value="{{$student->middlename}}">
+                             <input type="text" class="form-control" name="middlename" value="{{$student->middlename}}" minlength="2" onkeydown="return /[a-z]/i.test(event.key)">
                          </div>
                          <div class="form-group col-md-4">
                             <label for="name">Lastname:</label>
                              <span class="text-danger">*</span>
-                             <input type="text" class="form-control" name="lastname" value="{{$student->lastname}}">
+                             <input type="text" class="form-control" name="lastname" value="{{$student->lastname}}" minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required>
                          </div>
                         </div>
                         
@@ -63,7 +63,8 @@
                         <div class="col-md-4">
                             {{Form::label("", "Birthdate")}}
                             <span class="text-danger">*</span>
-                            <input type="date" class="form-control" name="birthdate" value="{{$student->birthdate}}">
+                            <input type="date" class="form-control" name="birthdate" id="edit_student_birthdate"   value="{{$student->birthdate}}">
+                            <div class="agehere" style="margin-top: 8px;"></div>
                         </div>
                          <div class="col-md-4">
                              {{Form::label("", "Address")}}
@@ -83,6 +84,7 @@
          </div>
      </div>
  </div>
+
 
 
 

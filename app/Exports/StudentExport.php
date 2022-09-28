@@ -10,7 +10,16 @@ class StudentExport implements FromCollection, WithHeadings
 {
     public function headings():array{
         return [
-           'firstname', 'middlename','lastname','email', 'contact', 'gender', 'birthdate', 'birthplace', 'address'
+           'firstname', 
+           'middlename',
+           'lastname',
+           'email', 
+           'contact', 
+           'gender', 
+           'birthdate', 
+           'birthplace', 
+           'address',
+           'age'
         ];
     }
     /**
@@ -20,7 +29,16 @@ class StudentExport implements FromCollection, WithHeadings
     {
         // GET THE DATA THAT WILL RETURN IN EXCEL
         return Student::all(
-            'firstname', 'middlename','lastname','email', 'contact', 'gender', 'birthdate', 'birthplace', 'address'
+            'firstname', 
+            'middlename',
+            'lastname',
+            'email', 
+            'contact', 
+            'gender', 
+            'birthdate', 
+            'birthplace', 
+            'address',
+            'age'
         );
 
         // return collect(Student::getStudents());

@@ -101,7 +101,8 @@
             <p>{{$announcement->detail}}</p>
           </div>
           <div class="announcement_footer">
-            <span>Posted: {{ date('M d, Y | h:i a', strtotime($announcement->created_at))}}</span>
+            <span>Posted: {{ date('M d, Y', strtotime($announcement->start_date))}}</span>
+            <p>Until: {{ date('M d, Y', strtotime($announcement->end_date))}}</p>
           </div>
         </div>
       @endforeach

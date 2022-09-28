@@ -15,15 +15,15 @@
             <div style="display: flex; gap: 10px;">
                 <form action="{{route('pdf')}}" method="post" target="_blank">
                     @csrf
-                    <button class="btn btn-warning"> <i class="fa fa-download"></i> PDF </button>
+                    <button class="btn btn-warning" data-tooltip="export as PDF"> <i class="fa fa-download"></i> PDF </button>
                 </form>
                 
-                <a href="{{route('import-excel')}}"  class="btn btn-success"><i class="fa fa-download"></i> EXCEL</a>
+                <a href="{{route('import-excel')}}"  class="btn btn-success" data-tooltip="import Excel"><i class="fa fa-download"></i> EXCEL</a>
                 {{-- <button class="btn btn-success"> <i class="fa fa-download"></i> EXCEL </button> --}}
 
                 <form action="{{route('export-excel')}}">
                     @csrf
-                    <button class="btn btn-info"> <i class="fa fa-upload"></i> EXCEL </button>
+                    <button class="btn btn-info" data-tooltip="Export as Excel"> <i class="fa fa-upload"></i> EXCEL </button>
                 </form>
             </div>
         </div>
@@ -38,6 +38,7 @@
                 <th scope="col">email</th>
                 <th scope="col">gender</th>
                 <th scope="col">birthdate</th>
+                <th scope="col">age</th>
                 <th scope="col">birthplace</th>
                 <th scope="col">address</th>
                 <th scope="col">action</th>
@@ -55,6 +56,7 @@
                             <td>{{ $student->email}}</td>
                             <td>{{ $student->gender}}</td>
                             <td>{{ $student->birthdate}}</td>
+                            <td>{{ $student->age}}</td>
                             <td>{{ $student->birthplace}}</td>
                             <td>{{ $student->address}}</td>
                             <td style="display: flex; align-items:center; gap:5px;">
@@ -65,7 +67,7 @@
                               
                                 {!! Form::open(['action' => ['StudentController@destroy', $student->id], 'method' => 'SUBMIT']) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}
-                                    <button class="btn btn-danger" type="submit"> <i class="fa  fa-trash"></i></button>
+                                    <button class="btn btn-danger" type="submit" data-tooltip="delete"> <i class="fa  fa-trash"></i></button>
                                 {!! Form::close() !!}
                             </td>
                         </tr>

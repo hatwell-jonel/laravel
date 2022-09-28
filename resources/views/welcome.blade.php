@@ -101,15 +101,7 @@
             <img src="{{asset('local_assets/pupLogo.webp')}}" class="school_logo" alt="image">
             @if (Route::has('login'))
                 <div class="">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="btn_login">Login</a>
-
-                        {{-- @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif --}}
-                    @endauth
+                    <a href="{{ route('login') }}" class="btn_login">Login</a>
                 </div>
             @endif
         </nav>

@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-showAnnouncement{{$announcement->id}}">
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-showAnnouncement{{$announcement->id}}" data-tooltip="view">
     <i class="fa fa-eye"></i>
  </button>
  
@@ -14,16 +14,16 @@
          <div class="modal-body ">
              
              <section class="img_section" style="width: 100%; margin-inline: auto;">
-                @php
+                {{-- @php
                     $image = DB::table('announcement')->where('id', $announcement->id)->first();
                     $images = explode('|', $image->image);
                     // dd($images);
                 @endphp
                 @foreach ($images as $item)
                     <img src="{{URL::to($item)}}" style="display: block; width:100%; max-height: 300px;" alt="image">
-                @endforeach
+                @endforeach --}}
                 {{-- ============ --}}
-                {{-- <img src="{{asset('images/'.$announcement->image)}}" style="display: block; width:100%; max-height: 300px;" alt="image"> --}}
+                <img src="{{asset('images/'.$announcement->image)}}" style="display: block; width:100%; max-height: 300px;" alt="image">
             </section>
             <h3 style="padding: 0; margin:0;" class="text-capitalize text-center">{{$announcement->title}}</h3>
             <p class="lead text-left"> {!! $announcement->detail !!}</p>
