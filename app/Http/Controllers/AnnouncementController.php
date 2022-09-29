@@ -69,11 +69,11 @@ class AnnouncementController extends Controller
 
 
         //==========================
-        $announcement           = new Announcement;
-        $announcement->title    = $request->announcement_title;
-        $announcement->detail   = $request->announcement_detail;    
+        $announcement                   = new Announcement;
+        $announcement->title            = $request->announcement_title;
+        $announcement->detail           = $request->announcement_detail;    
         $announcement->start_date       = $request->announcement_start;
-        $announcement->end_date       = $request->announcement_end;
+        $announcement->end_date         = $request->announcement_end;
         if($request->hasFile('announcement_image')){
             $imagename = 'image-'. time()  . '.' . $request->announcement_image->guessExtension();
             $request->announcement_image->move(public_path('images'), $imagename);
@@ -117,10 +117,12 @@ class AnnouncementController extends Controller
     public function update(Request $request, $id)
     {
         $announcement              = Announcement::find($id);
-        $announcement->title       = $request->announcement_title;
-        $announcement->detail       = $request->announcement_detail;
-        $announcement->image       = $request->announcement_image;
-        $announcement->update();
+        $announcement->title       = $request->announcement_update_title;
+        $announcement->detail      = $request->announcement_update_detail;
+        $announcement->start_date      = $request->announcement_update_start;    
+        $announcement->end_date  = $request->announcement_update_end;
+
+        $announcement->update();    
         return redirect()->back();
     }
 

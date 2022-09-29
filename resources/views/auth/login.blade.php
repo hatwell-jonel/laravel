@@ -17,13 +17,25 @@
             <h2 class="text-white text-center">LOGIN</h2>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-
+{{-- 
                 <div class="form-group">
                     <label for="email" class="text-white">{{ __('Email:') }}</label>
                     <div class="">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                         @error('email')
+                            <span class="invalid-feedback text-white" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div> --}}
+                <div class="form-group">
+                    <label for="username" class="text-white">{{ __('Username:') }}</label>
+                    <div class="">
+                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="account_id" value="{{ old('account_id') }}" required autofocus>
+
+                        @error('account_id')
                             <span class="invalid-feedback text-white" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

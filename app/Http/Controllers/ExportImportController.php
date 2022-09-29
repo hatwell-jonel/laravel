@@ -27,13 +27,18 @@ class ExportImportController extends Controller
 
     public function importFile(Request $request){
 
-        $import = new StudentImport;
-        $file = $request->file('file');
+        try{
+            $import = new StudentImport;
+            $file = $request->file('file');
+    
+            Excel::import($import, $file);
+    
+            // $import->import($request->file('file')->store('import'));
+    
+            return redirect()->route('application')->with('success', 'Import Successully.');
+        }catch(\Exception $e){
+            dd($e);
+        }
 
-        Excel::import($import, $file);
-
-        // $import->import($request->file('file')->store('import'));
-
-        return redirect()->route('application')->with('success', 'Import Successully.');
     }
 }

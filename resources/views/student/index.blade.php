@@ -3,15 +3,16 @@
 @section('application')
     <div class="container-fluid">
         <div style="display: flex; align-items:center; justify-content:space-between;">
-            {{-- @if($errors->any())
-                <div>
-                    @foreach($errors->all() as $error)
-                        <span  class="text-danger">{{$error}}</span>
-                    @endforeach
-                </div>
-            @endif --}}
-            @include('modal.addStudent')
 
+
+            @if ($message = Session::get('message'))
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
+            @endif             
+            
+            
+            @include('modal.addStudent')
             <div style="display: flex; gap: 10px;">
                 <form action="{{route('pdf')}}" method="post" target="_blank">
                     @csrf
@@ -19,7 +20,6 @@
                 </form>
                 
                 <a href="{{route('import-excel')}}"  class="btn btn-success" data-tooltip="import Excel"><i class="fa fa-download"></i> EXCEL</a>
-                {{-- <button class="btn btn-success"> <i class="fa fa-download"></i> EXCEL </button> --}}
 
                 <form action="{{route('export-excel')}}">
                     @csrf

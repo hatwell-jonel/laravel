@@ -9,6 +9,9 @@ use App\Helpers\Helper;
 use PHPUnit\TextUI\Help;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+// use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Support\Facades\DB;
+use Validator;
 
 class StudentController extends Controller
 {
@@ -41,6 +44,51 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        // $validator = Validator::make($request->all(), [
+        //     'firstname' => 'required',
+        //     'middlename' => 'required',
+        //     'lastname' => 'required',
+        //     'contact' => 'required',
+        //     'gender' => 'required',
+        //     'birthplace' => 'required',
+        //     'birthdate' => 'required',
+        //     'address' => 'required',
+        // ]);
+
+
+        // if($validator->fails()){
+        //     // return redirect()->back();
+        //     return response()->json(['status' => 0, 'error'=>$validator->errors()->toArray()]);
+        // }else{
+            
+        //     $student    = new Student;
+        //     $generator  = Helper::IDGenerator($student,'student_id', 5, date('Y'));
+            
+        //     $values = [
+        //         'student_id'    => $generator,
+        //         'firstname'     => $request->firstname,
+        //         'middlename'    => $request->middlename,
+        //         'lastname'      => $request->firstname,
+        //         'contact'       => $request->contact,
+        //         'email'         => $request->email,
+        //         'gender'        => $request->gender,
+        //         'birthplace'    => $request->birthplace,
+        //         'birthdate'     => $request->birthdate,
+        //         'age'           => Carbon::parse($request->birthdate)->age,
+        //         'address'       => $request->address,
+        //     ];
+
+        //     $query = DB::table('students')->insert($values);
+
+        //     if($query){
+        //         return response()->json(['status' => 1, 'msg' => 'Added Successfully.']);
+        //     }
+        // }   
+       
+        // return redirect('/admin/application');
+
+        // ======================================================
+       
         $request->validate([
             'firstname' => 'required',
             'middlename' => 'required',
@@ -59,7 +107,7 @@ class StudentController extends Controller
         $student->middlename    = $request->middlename;
         $student->lastname      = $request->lastname;
         $student->contact       = $request->contact;
-        $student->email         = $generator.'@student.com';
+        $student->email         = $request->email;
         $student->gender        = $request->gender;
         $student->birthdate     = $request->birthdate;
         $student->birthplace    = $request->birthplace;
@@ -67,7 +115,7 @@ class StudentController extends Controller
         $student->age           = Carbon::parse($request->birthdate)->age; 
         $student->save();
 
-
+        
         $user                   = new User;
         $user->user_level       = "student";
         $user->account_id       = $generator;
@@ -80,13 +128,15 @@ class StudentController extends Controller
         $user->contact          = $request->contact;
         $user->address          = $request->address;
         $user->name             = $request->firstname. ' ' . $request->lastname;
-        $user->email            = $generator.'@'.'student'.'.com';
+        $user->email            = $request->email;
         $user->password         = Hash::make($generator.$request->lastname);
         $user->image            = 'images/default_profile/user.png';
         $user->age           = Carbon::parse($request->birthdate)->age; 
         $user->save();
 
-        return redirect('/students')->with("message", 'Created');
+        // return redirect('/students')->with("message", 'Created');
+
+        return redirect()->back();
     }
 
     /**
@@ -134,7 +184,7 @@ class StudentController extends Controller
         $student->birthplace    = $request->birthplace;
         $student->address       = $request->address;
         $student->update();
-        return redirect('/students');
+        return redirect()->back();
     }
 
     /**

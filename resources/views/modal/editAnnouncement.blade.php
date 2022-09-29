@@ -18,14 +18,26 @@
                         <div class="form-group col-md-4">
                             {{Form::label("", "Title")}}
                             <span class="text-danger">*</span>
-                            <input type="text" value="{{$announcement->title}}" class="form-control" name="announcement_title">
+                            <input type="text" value="{{$announcement->title}}" class="form-control" name="announcement_update_title">
                         </div>
 
-                        <div class="col-md-2"></div>
+                        <div class="col-md-2">
+                            {{Form::label("", "start")}}
+                            <span class="text-danger">*</span>
+                            <input type="date" value="{{$announcement->start_date}}" class="form-control" name="announcement_update_start" required>
+                        </div>
+
+                        
+                        <div class="col-md-2">
+                            {{Form::label("", "Until")}}
+                            <span class="text-danger">*</span>
+                            <input type="date" value="{{$announcement->end_date}}" class="form-control" name="announcement_update_end" required>
+                        </div>
+
 
                         <div class="form-group col-md-6">
                             {{Form::label("", "Upload image")}}
-                            <input type="file" value="{{$announcement->image}}" class="form-control" name="announcement_image" >
+                            <input type="file" class="form-control" name="announcement_update_image" >
                         </div>
                     </div>
                     
@@ -33,7 +45,7 @@
                         <div class="col-md-12">
                             {{Form::label("", "Details")}}
                             <span class="text-danger">*</span>
-                            <textarea name="announcement_detail" id="update_editor" class="form-control" style="resize: false;">
+                            <textarea name="announcement_update_detail" id="update_editor" class="form-control" style="resize: false;">
                                 {!! $announcement->detail !!}
                             </textarea>
                         </div>

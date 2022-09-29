@@ -25,21 +25,22 @@
                         <div class="form-group col-md-4">
                             {{Form::label("", "Firstname")}}
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" name="firstname" id="firstname" minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required>
-                            <span class="error" id="firstname_err">firstname is required!</span>
-                       
+                            <input type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" id="firstname" minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required>
+                            @error('firstname')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
                         <div class="form-group col-md-4">
                             {{Form::label("", "Middlename")}}
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" name="middlename" id="middlename" minlength="2" onkeydown="return /[a-z]/i.test(event.key)">
-                            <span class="error" id="middlename_err">middlename is required!</span>
+                            <input type="text" class="form-control" name="middlename" id="middlename" minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required>
+                            <span class="validation_error middlename_error" id="middlename_err"></span>
                         </div>
                         <div class="form-group col-md-4">
                             {{Form::label("", "Lastname")}}
                             <span class="text-danger">*</span>
                             <input type="text" class="form-control" name="lastname" id="lastname" minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required>
-                            <span class="error" id="lastname_err">lastname is required!</span>
+                            <span class="validation_erro lastname_errorr" id="lastname_err"></span>
                         </div>
 
                     </div>
@@ -49,15 +50,15 @@
                             {{Form::label("", "Contact")}}
                             <span class="text-danger">*</span>
                             <input type="text" class="form-control" name="contact" id="contact" maxlength="11" onkeypress=" return isNumber(event)" required>
-                            <span class="error" id="contact_err">contact is required!</span>
+                            <span class="validation_error contact_error" id="contact_err"></span>
                         </div>
                    
     
                         <div class="col-md-4">
                             {{Form::label("", "Email")}}
                             <span class="text-danger">*</span>
-                            <input type="email" name="email" class="form-control" id="email" placeholder="Autogenerate Email" disabled>
-                            <span class="error" id="email_err">email is required!</span>
+                            <input type="email" name="email" class="form-control" id="email" required>
+                            <span class="validation_error email_error" id="email_err"></span>
                         </div>
 
                         <div class="col-md-4">
@@ -68,7 +69,7 @@
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>
-                            <span class="error" id="gender_err">gender is required!</span>
+                            <span class="validation_error gender_error" id="gender_err"></span>
                         </div>
 
                         
@@ -78,8 +79,8 @@
                         <div class="col-md-4">
                             {{Form::label("", "Birthplace")}}
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control"  id="firstname" name="birthplace" id="birthplace" required> 
-                            <span class="error" id="birthplace_err">birthplace is required!</span>
+                            <input type="text" class="form-control" name="birthplace" id="birthplace" required> 
+                            <span class="validation_error birthplace_error" id="birthplace_err"></span>
                         </div>
     
                         <div class="col-md-4">
@@ -87,14 +88,14 @@
                             <span class="text-danger">*</span>
                             <input type="date" class="form-control" name="birthdate" id="birthdate" onchange="agecalculator()" required>
                             <div class="agehere" style="margin-top: 8px;"></div>
-                            <span class="error" id="birthdate_err">birthdate is required!</span>
+                            <span class="validation_error birthdate_error" id="birthdate_err"></span>
                         </div>
 
                         <div class="col-md-4">
                             {{Form::label("", "Address")}}
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" id="address" name="address" required>
-                            <span class="error" id="address_err">address is required!</span>
+                            <input type="text" class="form-control" id="address" name="address" required    >
+                            <span class="validation_error address_error" id="address_err"></span>
                         </div>
                     </div>
                     

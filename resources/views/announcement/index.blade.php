@@ -15,6 +15,8 @@
               <tr>
                 <th scope="col">id</th>
                 <th scope="col">Title</th>
+                <th scope="col">start date</th>
+                <th scope="col">end date</th>
                 <th scope="col" style="word-wrap: break-word;
                 width: 700px;">Description</th>
                 <th scope="col">Action</th>
@@ -26,7 +28,9 @@
                         <tr>
                             <th scope="row">{{$announcement->id}}</th>
                             <td>{{$announcement->title}}</td>
-                            <td style="overflow: scroll !important;">{!!    $announcement->detail !!}</td>
+                            <td>{{ date('M d, Y', strtotime($announcement->start_date)) }}</td>
+                            <td>{{  date('M d, Y', strtotime($announcement->end_date))}}</td>
+                            <td style="overflow: scroll !important;">{!! $announcement->detail !!}</td>
                             {{-- <td>
                                 <img src="{{asset('images/'.$announcement->image)}}" alt="image">
                             </td> --}}

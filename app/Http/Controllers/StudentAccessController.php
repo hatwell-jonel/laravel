@@ -76,7 +76,6 @@ class StudentAccessController extends Controller
                 }
             }
 
-
             if($studentdata->image == "")
             {
                 $currentfile .= implode('|',$image);
