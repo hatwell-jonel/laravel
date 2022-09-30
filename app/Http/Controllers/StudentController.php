@@ -45,9 +45,9 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         // $validator = Validator::make($request->all(), [
-        //     'firstname' => 'required',
-        //     'middlename' => 'required',
-        //     'lastname' => 'required',
+        //     'firstname' => ['required', 'string', 'max:255','min:2'],
+        //     'middlename' => ['required', 'string', 'max:255','min:2'],
+        //     'lastname' => ['required', 'string', 'max:255','min:2'],
         //     'contact' => 'required',
         //     'gender' => 'required',
         //     'birthplace' => 'required',
@@ -185,6 +185,8 @@ class StudentController extends Controller
         $student->address       = $request->address;
         $student->update();
         return redirect()->back();
+    
+    
     }
 
     /**
@@ -202,4 +204,5 @@ class StudentController extends Controller
         $user->delete();
         return redirect()->back();
     }
+
 }

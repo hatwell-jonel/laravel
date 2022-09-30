@@ -21,7 +21,7 @@ class AdminMiddleware
                 return $next($request);
             }else{
 
-                return redirect('student/announcement');
+                return redirect('/admin_access');
             }
         }else{
             return redirect("/login");

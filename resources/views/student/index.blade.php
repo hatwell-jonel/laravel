@@ -3,15 +3,11 @@
 @section('application')
     <div class="container-fluid">
         <div style="display: flex; align-items:center; justify-content:space-between;">
-
-
             @if ($message = Session::get('message'))
                 <div class="alert alert-success">
                     <p>{{ $message }}</p>
                 </div>
             @endif             
-            
-            
             @include('modal.addStudent')
             <div style="display: flex; gap: 10px;">
                 <form action="{{route('pdf')}}" method="post" target="_blank">

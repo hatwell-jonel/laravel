@@ -10,7 +10,7 @@
 <body>
     
     <div class="container">
-        <a href="{{url('/admin/application')}}" class="btn btn-primary">back</a>
+        <a href="{{url('/admin_access/student')}}" class="btn btn-primary">back</a>
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">

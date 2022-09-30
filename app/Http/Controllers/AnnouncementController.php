@@ -74,6 +74,7 @@ class AnnouncementController extends Controller
         $announcement->detail           = $request->announcement_detail;    
         $announcement->start_date       = $request->announcement_start;
         $announcement->end_date         = $request->announcement_end;
+
         if($request->hasFile('announcement_image')){
             $imagename = 'image-'. time()  . '.' . $request->announcement_image->guessExtension();
             $request->announcement_image->move(public_path('images'), $imagename);
@@ -81,6 +82,7 @@ class AnnouncementController extends Controller
         }else{
             $announcement->image    = null;
         }
+        
         $announcement->save();
         return redirect()->back();
     }

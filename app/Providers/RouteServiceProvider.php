@@ -22,10 +22,10 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     // DEFAULT
-    public const HOME = '/admin/dashboard';
+    // public const HOME = '/home';
 
     // MODIFY
-    // public const HOME = '/admin';
+    public const HOME = '/admin_access';
 
     /**
      * Define your route model bindings, pattern filters, etc.

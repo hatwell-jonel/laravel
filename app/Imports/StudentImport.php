@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Validators\Failure;
 
 
-class StudentImport implements ToModel, WithHeadingRow,WithValidation
+class StudentImport implements ToModel, WithHeadingRow, WithValidation
 {
     // use SkipsErrors, SkipsFailures;
     /**
@@ -34,8 +34,6 @@ class StudentImport implements ToModel, WithHeadingRow,WithValidation
             $generator = Helper::IDGenerator($student,'student_id', 5, date('Y'));
     
             $email_value = !empty($row['email']) ? $row['email'] : $generator.'@student.com';
-    
-    
             return [new Student([
                         // Column name at the database $row['column_name']
     

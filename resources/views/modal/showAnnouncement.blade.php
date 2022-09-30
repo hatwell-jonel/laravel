@@ -1,8 +1,8 @@
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-showAnnouncement{{$announcement->id}}" data-tooltip="view">
+{{-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-showAnnouncement{{$announcement->id}}" data-tooltip="view">
     <i class="fa fa-eye"></i>
  </button>
  
- 
+  --}}
 <div class="modal fade" id="modal-showAnnouncement{{$announcement->id}}">
      <div class="modal-dialog  modal-xl" style="min-width: 700px;">
          <div class="modal-content">
