@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Hash;
 class AdminStudentController extends Controller
 {
     public function store(Request $request){
+
+        
+
         $generator  = Helper::IDGenerator(new Student,'student_id', 5, date('Y'));
         
         Student::create([
@@ -44,7 +47,8 @@ class AdminStudentController extends Controller
             'birthplace'    => $request->student_birthplace,
             'address'       => $request->student_address,
             'age'           => Carbon::parse($request->student_birthdate)->age,
-            'password'      => Hash::make($generator.$request->lastname),
+            'image'         => '/default_profile/user.png',
+            'password'      => Hash::make($generator.$request->student_lastname),
         ]);
 
 

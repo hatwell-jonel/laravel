@@ -16,15 +16,15 @@ class UserMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check()){
-            if(Auth::user()->user_level == "student"){
-                return $next($request);
-            }else{
-                return redirect('admin_access');
-            }
-        }else{
-            return redirect("/login");
-        }
+        // if(Auth::check()){
+        //     if(Auth::user()->user_level == "student"){
+        //         return $next($request);
+        //     }else{
+        //         return redirect('admin_access');
+        //     }
+        // }else{
+        //     return redirect("/login");
+        // }
         return $next($request);
     }
 }

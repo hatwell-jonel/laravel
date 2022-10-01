@@ -13,6 +13,7 @@
     <link href="{{ asset('css/tooltip.css') }}" rel="stylesheet">
 
     @include('inc.upperlink')
+
 </head>
 
 
@@ -34,6 +35,23 @@
     </div>
 
     @include('inc.lowerlink')
+    <script defer>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    // $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                    $('#imagePreview').css('background-image', 'url('+ URL::to('') +')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#imageUpload").change(function() {
+            readURL(this);
+        });
+    </script>
 </body>
 </html>
 

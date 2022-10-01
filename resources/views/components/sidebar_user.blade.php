@@ -14,12 +14,12 @@
       <ul class="sidebar-menu"  data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-          <a href="{{route('adminCharts')}}">
+          <a href="{{route('userAnnouncement')}}">
            <i class="fa fa-dashboard"></i> <span>Announcement</span>
           </a>
         </li>
         <li class="active">
-          <a href="{{route('AdminStudent')}}">
+          <a href="{{route('userProfile')}}">
             <i class="fa  fa-bars"></i> <span>Profile</span>
           </a>
         </li>

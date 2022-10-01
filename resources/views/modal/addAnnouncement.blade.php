@@ -11,29 +11,29 @@
                 <h4 class="modal-title">Create Announcement</h4>
             </div>
             <div class="modal-body">
-                <form action="{{route('store.announcement')}}" method="post">
+                <form action="{{route('store.announcement')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="announcement_title">Title</label>
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" name="announcement_title" id="announcement_title" required>
+                            <input type="text" class="form-control" name="announcement_title" id="announcement_title">
                         </div>
 
                         
                         <div class="col-md-2">
                             <label for="announcement_start">Start Date</label>
-                            <input type="date" class="form-control" name="announcement_start" id="announcement_start"  required>
+                            <input type="date" class="form-control" name="announcement_start" id="announcement_start" >
                         </div>
 
                         <div class="col-md-2">
                             <label for="announcement_end">End Date</label>
-                            <input type="date" class="form-control" name="announcement_end" id="announcement_end"  required>
+                            <input type="date" class="form-control" name="announcement_end" id="announcement_end" >
                         </div>
 
                         <div class="form-group col-md-4">
                             <label for="announcement_image">Image</label>
-                            <input type="file" class="form-control" name="announcement_image" id="announcement_image"  accept="image/*" required/>
+                            <input type="file" class="form-control" name="announcement_image[]" id="announcement_image" multiple  accept="image/*" required/>
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                         <div class="col-md-12">
                             <label for="announcement_detail">Details</label>
                             <span class="text-danger">*</span>
-                            <textarea name="announcement_detail" id="editor" class="form-control" style="resize: false;" required></textarea>
+                            <textarea name="announcement_detail" id="editor" class="form-control" style="resize: false;"></textarea>
                         </div>
                     </div>
 

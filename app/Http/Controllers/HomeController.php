@@ -16,11 +16,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $array = ['auth', 'isAdmin'];
-        $this->middleware($array);
-    }
 
     /**
      * Show the application dashboard.

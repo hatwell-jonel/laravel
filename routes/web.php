@@ -59,7 +59,7 @@ Auth::routes();
 // Route::get('/admin_access',[AdminViewController::class, 'index'])->name('adminIndex');
 
 
-Route::prefix('admin_access')->middleware(['auth', 'isAdmin'])->group(function(){
+Route::prefix('admin_access')->middleware(['adminAccess'])->group(function(){
     Route::get('/',                 [AdminViewController::class, 'chartsView'])->name('adminCharts');
     Route::get('/student',          [AdminViewController::class, 'studentsView'])->name('AdminStudent');
     Route::get('/announcement',     [AdminViewController::class, 'announcementView'])->name('AdminAnnouncement');
@@ -79,22 +79,23 @@ Route::prefix('admin_access')->middleware(['auth', 'isAdmin'])->group(function()
     Route::post('/announcement',    [AdminAnnouncementController::class, 'store'])->name('store.announcement');
     Route::put('/announcement/{id}',    [AdminAnnouncementController::class, 'update'])->name('update.announcement');
     Route::get('/announcement/{id}', [AdminAnnouncementController::class, 'destroy'])->name('destroy.announcement');
+
+    // PDF
+    Route::post('/pdf', 'ExportImportController@viewPDF')->name('pdf');
+    // Excel Export
+    Route::get('/export-excel', 'ExportImportController@exportExcel')->name('export-excel');
+    // Excel Import
+    Route::get('/import-excel', 'ExportImportController@importExcel')->name('import-excel');
+    Route::post('/import', 'ExportImportController@importFile')->name('student-import');
+
 });
 
 
-
-Route::prefix('student_access')->middleware(['auth', 'isUser'])->group(function(){
-    Route::get('/', [UserViewController::class, 'index'])->name('userIndex');
-    Route::get('/', [UserViewController::class, 'index'])->name('userIndex');
+Route::prefix('student_access')->middleware(['auth'])->group(function(){
+    Route::get('/', [UserViewController::class, 'announcementView'])->name('userAnnouncement');
+    Route::get('/profile', [UserViewController::class, 'profileView'])->name('userProfile');
 });
 
 
-// PDF
-Route::post('/pdf', 'ExportImportController@viewPDF')->name('pdf');
-// Excel Export
-Route::get('/export-excel', 'ExportImportController@exportExcel')->name('export-excel');
-// Excel Import
-Route::get('/import-excel', 'ExportImportController@importExcel')->name('import-excel');
-Route::post('/import', 'ExportImportController@importFile')->name('student-import');
 
 

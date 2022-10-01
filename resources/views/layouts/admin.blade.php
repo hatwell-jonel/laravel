@@ -33,14 +33,11 @@
     </div>
 
     @include('inc.lowerlink')
-    <script src="{{asset('js/charts.js')}}"></script>
 
-    <script>
-        $(document).ready(function(){
-            $('#studentsTable').DataTable();
-            $('#adminsTable').DataTable();
-        })
-    </script>
+    {{-- Functions for charts to get the data from database --}}
+    <script src="{{asset('js/charts.js')}}"></script>
+    {{-- Implementing of Data tables to tables --}}
+    <script src="{{asset('js/datatables.js')}}"></script>
 </body>
 </html>
 

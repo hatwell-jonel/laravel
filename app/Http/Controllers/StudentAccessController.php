@@ -16,11 +16,7 @@ class StudentAccessController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $array = ['auth', 'isUser'];
-        $this->middleware($array);
-    }
+
 
     public function announcementPage(){
         // $announcements = Announcement::All();

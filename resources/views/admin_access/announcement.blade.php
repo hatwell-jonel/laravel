@@ -15,7 +15,7 @@
         </div>
 
         <div class="table-responsive" style="margin-top: 30px; background:white; padding:1rem;">
-            <table class="table table-bordered table-striped table-condensed" id="adminsTable">
+            <table class="table table-bordered table-striped table-condensed" id="announcementTable">
                 <thead>
                     <tr>
                         <th scope="col">id</th>
@@ -40,13 +40,11 @@
                                     <i class="fa fa-eye"></i>
                                  </button>
                                  @include('modal.showAnnouncement')
-                             
                                  
                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-editAnnouncement{{$announcement->id}}" data-tooltip="edit">
                                     <i class="fa fa-edit"></i>
                                 </button>
                                 @include('modal.editAnnouncement')
-
 
                                 <a class="btn btn-danger" href="{{url('/admin_access/announcement/'. $announcement->id)}}" data-tooltip="delete"> <i class="fa  fa-trash"></i></a>
                             </td>
