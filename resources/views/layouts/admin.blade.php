@@ -38,6 +38,14 @@
     <script src="{{asset('js/charts.js')}}"></script>
     {{-- Implementing of Data tables to tables --}}
     <script src="{{asset('js/datatables.js')}}"></script>
+    <script>
+        function preventNumbers(e){
+            let keyCode = (e.keyCode ? e.keyCode : e.which);
+            if(keyCode > 47 && keyCode < 58  || keyCodem > 95 && keyCode < 107){
+                e.preventDefault();
+            }
+        }
+    </script>
 </body>
 </html>
 

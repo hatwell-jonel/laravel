@@ -18,7 +18,7 @@
                     <button class="btn btn-warning" data-tooltip="export as PDF"> <i class="fa fa-download"></i> PDF </button>
                 </form>
                 
-                <a href="{{route('import-excel')}}"  class="btn btn-success" data-tooltip="import Excel"><i class="fa fa-download"></i> EXCEL</a>
+                <a href="{{route('importView')}}"  class="btn btn-success" data-tooltip="import Excel"><i class="fa fa-download"></i> EXCEL</a>
 
                 <form action="{{route('export-excel')}}">
                     @csrf

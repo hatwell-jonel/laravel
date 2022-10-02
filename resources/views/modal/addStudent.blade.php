@@ -13,15 +13,15 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="student_firstname">Firstname</label>
-                                <input type="text" class="form-control" name="student_firstname" id="student_firstname" minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required />
+                                <input type="text" class="form-control" name="student_firstname" id="student_firstname" minlength="2"  pattern="[^()/<>[\]\\,'|\x22]+"  onkeydown="preventNumbers(event)" required />
                             </div>
                             <div class="col-md-4">
                                 <label for="student_middlename">Middlename</label>
-                                <input type="text" class="form-control" name="student_middlename" id="student_middlename" minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required />
+                                <input type="text" class="form-control" name="student_middlename" id="student_middlename" minlength="2"  pattern="[^()/<>[\]\\,'|\x22]+"  onkeydown="preventNumbers(event)" required />
                             </div>
                             <div class="col-md-4">
                                 <label for="student_lastname">Lastname</label>
-                                <input type="text" class="form-control" name="student_lastname" id="student_lastname" minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required />
+                                <input type="text" class="form-control" name="student_lastname" id="student_lastname" minlength="2"  pattern="[^()/<>[\]\\,'|\x22]+"  onkeydown="preventNumbers(event)" required />
                             </div>
                         </div>
 
@@ -78,7 +78,6 @@
 
 
 <script defer>
-    
     let studentBirthdate = document.querySelector("#student_birthdate");
 
     function maxDate(element){
@@ -89,36 +88,4 @@
     }
 
     maxDate(studentBirthdate);
-
-    // function agecalculator(){
-    //     var dNow = new Date();
-
-    //     var birthdate = document.getElementById('birthdate');
-    //     var birthday = new Date(birthdate.value);
-
-
-    //     var cmm = dNow.getMonth()+1;
-    //     var cdd = dNow.getDate();
-    //     var cyy = dNow.getFullYear();
-
-    //     var dd = birthday.getDate()+1;
-    //     var mm = birthday.getMonth()+1;
-    //     var yy = birthday.getFullYear();
-
-    //     var agebyyear = Math.abs(yy - dNow.getFullYear());
-
-    //     if((agebyyear > 12 && mm < cmm ) || (agebyyear > 12 && mm == cmm && dd <= cdd))
-    //     {
-    //         $(".agehere").html(agebyyear + " yrs old").css({"color": "green"});
-    //         // $('#birthdate').val(agebyyear);
-    //     }else if((agebyyear > 12 && mm > cmm ) || (agebyyear > 12 && mm == cmm && dd >= cdd)){
-    //         $(".agehere").html(agebyyear - 1 + " years old");
-    //         // $('#birthdate').val(agebyyear - 1);
-    //     }
-    //     else
-    //     {
-    //         $(".agehere").html("Underage").css("color", "red");
-    //     }
-    // }
-
 </script>

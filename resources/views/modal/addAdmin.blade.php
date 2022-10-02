@@ -13,17 +13,17 @@
                         <div class="col-md-4">
                             <label for="admin_firstname">Firstname</label>
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" name="admin_firstname" id="admin_firstname" minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required >
+                            <input type="text" class="form-control" name="admin_firstname" id="admin_firstname" minlength="2"  pattern="[^()/<>[\]\\,'|\x22]+"  onkeydown="preventNumbers(event)" required >
                         </div>
                         <div class="col-md-4">
                             <label for="admin_middlename">Middlename</label>
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" name="admin_middlename" id="admin_middlename" minlength="2" onkeydown="return /[a-z]/i.test(event.key)" required>
+                            <input type="text" class="form-control" name="admin_middlename" id="admin_middlename" minlength="2" pattern="[^()/<>[\]\\,'|\x22]+" onkeydown="preventNumbers(event)" required>
                         </div>
                         <div class="col-md-4">
                             <label for="admin_lastname">Lastname</label>
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" name="admin_lastname" id="admin_lastname" minlength="2" onkeydown="return /[a-z]/i.test(event.key)"  required>
+                            <input type="text" class="form-control" name="admin_lastname" id="admin_lastname" minlength="2" pattern="[^()/<>[\]\\,'|\x22]+" onkeydown="preventNumbers(event)"  required>
                         </div>
                     </div>
                     <div class="row">

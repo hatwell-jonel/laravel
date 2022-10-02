@@ -42,9 +42,6 @@ class AdminAnnouncementController extends Controller
 
 
     public function update(Request $request, $id){
-
-
-
         $announcement              = Announcement::find($id);
         $announcement->title       = $request->announcement_update_title;
         $announcement->detail      = $request->announcement_update_detail;

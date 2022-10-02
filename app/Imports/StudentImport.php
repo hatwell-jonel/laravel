@@ -7,20 +7,19 @@ use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
-use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Validators\Failure;
+use Maatwebsite\Excel\Concerns\ToModel;
 use App\Helpers\Helper;
 use App\User;
-use Illuminate\Support\Facades\Hash;
-use Maatwebsite\Excel\Validators\Failure;
 
 
-class StudentImport implements ToModel, WithHeadingRow, WithValidation
+class StudentImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure
 {
-    // use SkipsErrors, SkipsFailures;
+    use SkipsFailures, Importable;
     /**
     * @param array $row
     *
@@ -28,65 +27,47 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation
     */
     public function model(array $row)
     {
+        $student = new Student;
+        $generator = Helper::IDGenerator($student,'student_id', 5, date('Y'));
 
-        try{
-            $student = new Student;
-            $generator = Helper::IDGenerator($student,'student_id', 5, date('Y'));
-    
-            $email_value = !empty($row['email']) ? $row['email'] : $generator.'@student.com';
-            return [new Student([
-                        // Column name at the database $row['column_name']
-    
-                        // autogenerate ID
-                        'student_id'    => $generator,
-                        'firstname'     => $row['firstname'],
-                        'middlename'    => $row['middlename'],
-                        'lastname'      => $row['lastname'],
-                        'email'         => $email_value,
-                        'contact'       => $row['contact'],
-                        'gender'        => $row['gender'],
-                        'birthdate'     => $row['birthdate'],
-                        'age'           => $row['age'],
-                        'birthplace'    => $row['birthplace'],
-                        'address'       => $row['address'],
-                        ]), 
-                    User::create([
-                        'user_level'    => 'student',
-                        'account_id'    => $generator,
-                        'firstname'     => $row['firstname'],
-                        'middlename'    => $row['middlename'],
-                        'lastname'      => $row['lastname'],
-                        'gender'        => $row['gender'],
-                        'birthplace'    => $row['birthplace'],
-                        'contact'       => $row['contact'],
-                        'birthdate'     => $row['birthdate'],
-                        'address'       => $row['address'],
-                        'age'           => $row['age'],
-                        'name'          => $row['firstname'].$row['lastname'],
-                        'email'         => $email_value,
-                        'password'      => bcrypt($generator.$row['lastname']),
-                ])
-            ];
-        }catch(\Exception $e){
-            dd($e);
-        }
-     
-    }
-
-    public function rules(): array
-    {
-        return [
-            '*.email' => ['email', 'unique:users,email']
+        return [new Student([
+                'student_id'    => $generator,
+                'firstname'     => $row['firstname'],
+                'middlename'    => $row['middlename'],
+                'lastname'      => $row['lastname'],
+                'age'           => $row['age'],
+                'gender'        => $row['gender'],
+                'contact'       => $row['contact'],
+                'email'         => $row['email'],
+                'birthdate'     => $row['birthdate'],
+                'birthplace'    => $row['birthplace'],
+                'address'       => $row['address'],
+        ]), 
+                User::create([
+                    'user_level'    => 'student',
+                    'account_id'    => $generator,
+                    'firstname'     => $row['firstname'],
+                    'middlename'    => $row['middlename'],
+                    'lastname'      => $row['lastname'],
+                    'gender'        => $row['gender'],
+                    'birthplace'    => $row['birthplace'],
+                    'contact'       => $row['contact'],
+                    'birthdate'     => $row['birthdate'],
+                    'address'       => $row['address'],
+                    'age'           => $row['age'],
+                    'name'          => $row['firstname'].$row['lastname'],
+                    'email'         => $row['email'],
+                    'password'      => bcrypt($generator.$row['lastname']),])
         ];
     }
 
-    // public function onFailure(Failure ...$failure)
-    // {
 
-    // }
+    function rules(): array
+    {
+        return [
+            '*.email' => ['email', 'unique:students,email'],
+        ];
 
-    // public function onError(Throwable $error)
-    // {
-    //     return $error;
-    // }
+    }
+
 }

@@ -85,15 +85,15 @@ Route::prefix('admin_access')->middleware(['adminAccess'])->group(function(){
     // Excel Export
     Route::get('/export-excel', 'ExportImportController@exportExcel')->name('export-excel');
     // Excel Import
-    Route::get('/import-excel', 'ExportImportController@importExcel')->name('import-excel');
-    Route::post('/import', 'ExportImportController@importFile')->name('student-import');
-
+    Route::get('/import', 'ExportImportController@importView')->name('importView');
+    Route::post('/import', 'ExportImportController@importFile')->name('import.studentExcel');
 });
 
 
 Route::prefix('student_access')->middleware(['auth'])->group(function(){
     Route::get('/', [UserViewController::class, 'announcementView'])->name('userAnnouncement');
     Route::get('/profile', [UserViewController::class, 'profileView'])->name('userProfile');
+    Route::put('/profile/{Auth::user()->id}', [UserViewController::class, 'profileImage'])->name('changeProfileImage');
 });
 
 

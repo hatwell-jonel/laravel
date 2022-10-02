@@ -122,6 +122,43 @@
         background-repeat: no-repeat;
         background-position: center;
     }
+    
+    .image_container{
+        position: relative;
+        margin: auto;
+    }
+
+    .user_image{
+        border: 2px solid #333;
+        margin: auto;
+    }
+
+    .image_button{
+        position: absolute !important; 
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+        top: 10px;
+        right: 10px;
+        z-index: 99;
+    }
+
+    #user_profile_image{
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+
+    #user_profile_image::-webkit-file-upload-button{
+        visibility: hidden !important;
+    }
 
 </style>
 
@@ -132,7 +169,24 @@
             <div class="profile_header">
 
                 <div class="profile_header-image">
-                    <div class="container">
+
+
+                <div class="image_container">
+                    <img src="{{asset('images/default_profile/user.png')}}" class="user_image" alt="">
+
+                    <form action="{{route('changeProfileImage', {{Auth::user()->id}})}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('put')
+                        <button class="image_button" data-tooltip="change profile">
+                            <label for=""><i class="fa fa-camera"></i></label>
+                            <input type="file" name="user_profile_image" id="user_profile_image" accept=".png, .jpg, .jpeg"  />
+                        </button>
+
+
+                        <button>Changed profile</button>
+                    </form>
+                </div>
+                    <!-- <div class="container">
                         <div class="avatar-upload">
                             <div class="avatar-edit">
                                 <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
@@ -143,7 +197,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 
 
