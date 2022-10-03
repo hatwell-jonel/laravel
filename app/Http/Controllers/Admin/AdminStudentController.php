@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Hash;
 class AdminStudentController extends Controller
 {
     public function store(Request $request){
-
-        
-
         $generator  = Helper::IDGenerator(new Student,'student_id', 5, date('Y'));
         
         Student::create([
@@ -76,7 +73,7 @@ class AdminStudentController extends Controller
         $student_id = $student->student_id;
         $user = User::where("account_id", $student_id)->first();
         $student->delete();
-        // $user->delete();
+        $user->delete();
         return redirect()->back();
     }
 }

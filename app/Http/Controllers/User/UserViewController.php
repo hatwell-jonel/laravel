@@ -17,7 +17,7 @@ class UserViewController extends Controller
 
         $today = Carbon::now()->format('Y-m-d');
         $announcements = Announcement::whereRaw("'$today' >= start_date and '$today' <= end_date")
-        ->orderBy('id', 'ASC')->get();
+        ->orderBy('id', 'ASC')->get(); 
 
         return view('student_access.announcement')->with('announcements', $announcements);
     }
@@ -28,16 +28,27 @@ class UserViewController extends Controller
     }
 
 
-    public function profileImage(Request $request){
-        $user =  Auth::user();
+    public function profileImage(Request $request, $id){
 
+        $user = User::find($id);
+        // dd($user->id);
+        $userid = $user->account_id;
+        // dd($userid);
+
+        if($request->hasFile('user_profile_image')){
+            $imagename = 'profile-'. time()  . '.' . $request->user_profile_image->guessExtension();
+            $request->user_profile_image->move(public_path('images/'), $imagename);
+            $user->image    = $imagename;
+        }else{
+            return back()->withStatus('Please input image.');
+        }
+        $user->update();    
+
+        // $user = User::find($id);
         // dd($user);
-
-        $imageName = time().'.'.$request->user_profile_image->extension();
-        $request->user_profile_image->move(public_path('images/'), $imageName);
-
-        $user->image = $imageName;
-        $user->update();
+        //  $imageName = time().'.'.$request->user_profile_image->extension();
+        // $request->user_profile_image->move(public_path('images/'), $imageName);
+        // $user->image = $imageName;
         return back();
     }
 }

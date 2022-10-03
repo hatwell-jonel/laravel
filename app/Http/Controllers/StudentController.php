@@ -185,8 +185,6 @@ class StudentController extends Controller
         $student->address       = $request->address;
         $student->update();
         return redirect()->back();
-    
-    
     }
 
     /**

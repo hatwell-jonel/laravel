@@ -93,7 +93,7 @@ Route::prefix('admin_access')->middleware(['adminAccess'])->group(function(){
 Route::prefix('student_access')->middleware(['auth'])->group(function(){
     Route::get('/', [UserViewController::class, 'announcementView'])->name('userAnnouncement');
     Route::get('/profile', [UserViewController::class, 'profileView'])->name('userProfile');
-    Route::put('/profile/{Auth::user()->id}', [UserViewController::class, 'profileImage'])->name('changeProfileImage');
+    Route::put('/profile/{id}', [UserViewController::class, 'profileImage'])->name('changeProfileImage');
 });
 
 

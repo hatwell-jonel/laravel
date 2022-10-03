@@ -163,7 +163,85 @@
 </style>
 
 @section('content')
-    <div class="container">
+
+    @foreach ($students as $student)
+
+        <div class="container">
+            <div class="profile">
+                <div class="profile_header">
+    
+                    <div class="profile_header-image">
+                        
+    
+                    <div class="image_container">
+                        {{-- <img src="{{asset('images/default_profile/user.png')}}" class="user_image" alt=""> --}}
+                        <img src="{{ URL::to('images/'.Auth::user()->image) }}" class="user_image" alt="">
+                        <form action="{{route('changeProfileImage',  Auth::user()->id)}}" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items:center;">
+                            @csrf
+                            @method('put')
+                            <button class="image_button" data-tooltip="change profile">
+                                <label for="user_profile_image" style="margin-top:5px;"><i class="fa fa-camera"></i></label>
+                                <input type="file" name="user_profile_image" id="user_profile_image" accept=".png, .jpg, .jpeg"  />
+                            </button>
+                            <div>
+                                @if(session('status'))
+                                    <div class="alert alert-warning" role="alert">{{session('status')}}</div>
+                                @endif
+                            </div>
+                            <button class="btn btn-primary" style="margin: 12px auto  0px !important">Changed profile</button>
+                        </form>
+                    </div>
+                        <!-- <div class="container">
+                            <div class="avatar-upload">
+                                <div class="avatar-edit">
+                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                    <label for="imageUpload"></label>
+                                </div>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    
+    
+                    <div class="profile_header-text">
+                        <h1>{{ Auth::user()->name }}</h1>
+                        <span> {{ Auth::user()->account_id }}</span>
+                    </div>
+                </div>
+                <div class="profile_body">
+                    <div class="row">
+                        <div class="col-md-12 auth_data">
+                            Email: <span class="data_value"> {{ Auth::user()->email }}</span>
+                        </div>
+                        <div class="col-md-12 auth_data">
+                            Contact: <span class="data_value"> {{ Auth::user()->contact }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 auth_data">
+                            Gender: <span class="data_value"> {{ Auth::user()->gender }}</span>
+                        </div>
+                        <div class="col-md-12 auth_data">
+                            Birthdate:  <span class="data_value">{{ date('M d, Y', strtotime(Auth::user()->birthdate))  }}</span> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 auth_data">
+                            Birthplace:  <span class="data_value">{{ Auth::user()->birthplace }}</span> 
+                        </div>
+                        <div class="col-md-12 auth_data">
+                            Address: <span class="data_value"> {{ Auth::user()->address }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+    {{-- <div class="container">
 
         <div class="profile">
             <div class="profile_header">
@@ -174,14 +252,13 @@
                 <div class="image_container">
                     <img src="{{asset('images/default_profile/user.png')}}" class="user_image" alt="">
 
-                    <form action="{{route('changeProfileImage', {{Auth::user()->id}})}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('changeProfileImage'), Auth::user()->id}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <button class="image_button" data-tooltip="change profile">
                             <label for=""><i class="fa fa-camera"></i></label>
                             <input type="file" name="user_profile_image" id="user_profile_image" accept=".png, .jpg, .jpeg"  />
                         </button>
-
 
                         <button>Changed profile</button>
                     </form>
@@ -233,7 +310,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     
 @endsection
 
