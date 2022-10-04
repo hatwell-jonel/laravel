@@ -18,7 +18,7 @@ class UserViewController extends Controller
         $today = Carbon::now()->format('Y-m-d');
         $announcements = Announcement::whereRaw("'$today' >= start_date and '$today' <= end_date")
         ->orderBy('id', 'ASC')->get(); 
-
+        // dd("expited");
         return view('student_access.announcement')->with('announcements', $announcements);
     }
 

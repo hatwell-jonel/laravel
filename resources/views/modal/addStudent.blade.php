@@ -13,32 +13,32 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="student_firstname">Firstname</label>
-                                <input type="text" class="form-control" name="student_firstname" id="student_firstname" minlength="2"  pattern="[^()/<>[\]\\,'|\x22]+"  onkeydown="preventNumbers(event)" required />
+                                <input type="text" class="form-control" name="student_firstname" id="student_firstname" minlength="2"  pattern="[^()/<>[\]\\,'|\x22]+"  onkeydown="preventNumbers(event)"  />
                             </div>
                             <div class="col-md-4">
                                 <label for="student_middlename">Middlename</label>
-                                <input type="text" class="form-control" name="student_middlename" id="student_middlename" minlength="2"  pattern="[^()/<>[\]\\,'|\x22]+"  onkeydown="preventNumbers(event)" required />
+                                <input type="text" class="form-control" name="student_middlename" id="student_middlename" minlength="2"  pattern="[^()/<>[\]\\,'|\x22]+"  onkeydown="preventNumbers(event)"  />
                             </div>
                             <div class="col-md-4">
                                 <label for="student_lastname">Lastname</label>
-                                <input type="text" class="form-control" name="student_lastname" id="student_lastname" minlength="2"  pattern="[^()/<>[\]\\,'|\x22]+"  onkeydown="preventNumbers(event)" required />
+                                <input type="text" class="form-control" name="student_lastname" id="student_lastname" minlength="2"  pattern="[^()/<>[\]\\,'|\x22]+"  onkeydown="preventNumbers(event)"  />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="contact">Contact</label>
-                                <input type="text" class="form-control" name="student_contact" id="student_contact" maxlength="11" onkeypress=" return isNumber(event)" required />
+                                <input type="text" class="form-control" name="student_contact" id="student_contact" maxlength="11" onkeypress=" return isNumber(event)"  />
                             </div>
         
                             <div class="col-md-4">
                                 <label for="student_email">Email</label>
-                                <input type="email" name="student_email" class="form-control" id="student_email" required />
+                                <input type="email" name="student_email" class="form-control" id="student_email"  />
                             </div>
 
                             <div class="col-md-4">
                                 <label for="student_gender">Gender</label>
-                                <select name="student_gender" class="form-control" id="student_gender" required>
+                                <select name="student_gender" class="form-control" id="student_gender" >
                                     <option value="" hidden selected>Select</option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -49,18 +49,18 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="student_birthplace">Birthplace</label>
-                                <input type="text" class="form-control" name="student_birthplace" id="student_birthplace"  required/> 
+                                <input type="text" class="form-control" name="student_birthplace" id="student_birthplace"  /> 
                             </div>
         
                             <div class="col-md-4">
                                 <label for="student_birthdate">Birthdate</label>
-                                <input type="date" class="form-control" name="student_birthdate" id="student_birthdate" required />
+                                <input type="date" class="form-control" name="student_birthdate" id="student_birthdate"  />
                                 <div class="agehere" style="margin-top: 8px;"></div>
                             </div>
 
                             <div class="col-md-4">
                                 <label for="student_address">Address</label>
-                                <input type="text" class="form-control" id="student_address" name="student_address" required />
+                                <input type="text" class="form-control" id="student_address" name="student_address"  />
                             </div>
                         </div>
 

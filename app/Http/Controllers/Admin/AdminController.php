@@ -9,11 +9,17 @@ use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use App\Mail\MailNotify;
+use Mail;
+
 
 class AdminController extends Controller
 {
     public function store(Request $request){
         $generator  = Helper::IDGenerator(new Admin,'admin_id', 3, "ADM");
+        $email = $request->admin_email;
+
         Admin::create([
             'admin_id'    => $generator,
             'firstname'     => $request->admin_firstname,
@@ -28,7 +34,7 @@ class AdminController extends Controller
             'age'           => Carbon::parse($request->admin_birthdate)->age,
         ]);
 
-        User::Create([
+       $userdata = User::Create([
             'user_level'    => "admin",
             'account_id'    => $generator,
             'firstname'     => $request->admin_firstname,
@@ -40,10 +46,14 @@ class AdminController extends Controller
             'birthdate'     => $request->admin_birthdate,
             'name'          => $request->admin_firstname. " " . $request->admin_lastname,
             'birthplace'    => $request->admin_birthplace,
+            'emailVerify_token' => Str::random(60),
             'address'       => $request->admin_address,
             'age'           => Carbon::parse($request->admin_birthdate)->age,
             'password'      => Hash::make($generator.$request->admin_lastname),
         ]);
+
+        Mail::to($email)->send(new MailNotify($userdata));
+
 
         return redirect()->back();
     }

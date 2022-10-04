@@ -22,8 +22,7 @@
                         <th scope="col">Title</th>
                         <th scope="col">start date</th>
                         <th scope="col">end date</th>
-                        <th scope="col" style="word-wrap: break-word;
-                        width: 700px;">Description</th>
+                        <th scope="col">Description</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -34,8 +33,8 @@
                             <td>{{$announcement->title}}</td>
                             <td>{{ date('M d, Y', strtotime($announcement->start_date)) }}</td>
                             <td>{{  date('M d, Y', strtotime($announcement->end_date))}}</td>
-                            <td style="overflow: scroll !important;">{!! $announcement->detail !!}</td>
-                            <td>
+                            <td style="width: 10px !important; word-wrap:break-word;">{!! $announcement->detail !!}</td>
+                            <td style="display:flex; gap:5px;">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-showAnnouncement{{$announcement->id}}" data-tooltip="view">
                                     <i class="fa fa-eye"></i>
                                  </button>

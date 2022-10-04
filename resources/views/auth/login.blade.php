@@ -61,6 +61,10 @@
                     </div>
                 </div>
 
+                @if(session('status'))
+                    <div class="alert alert-success" role="alert">{{session('status')}}</div>
+                @endif
+
                 <div class="form-group row mb-0">
                     <div class="col-md-12">
                         <button type="submit" class="w-100 login_btn btn">

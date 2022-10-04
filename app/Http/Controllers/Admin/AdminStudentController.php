@@ -9,11 +9,29 @@ use App\Student;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use App\Mail\MailNotify;
+use Mail;
 
 class AdminStudentController extends Controller
 {
     public function store(Request $request){
+
+        // $request->validate([
+        //     'firstname'     => 'required',
+        //     'middlename'    => 'required',
+        //     'lastname'      => 'required',
+        //     'contact'       => 'required',
+        //     'email'         => 'required|unique:admins',
+        //     'gender'        => 'required',
+        //     'birthdate'     => 'required',
+        //     'birthplace'    => 'required',
+        //     'address'       => 'required',
+        // ]);
+
+
         $generator  = Helper::IDGenerator(new Student,'student_id', 5, date('Y'));
+        $email = $request->student_email;
         
         Student::create([
             'student_id'    => $generator,
@@ -30,7 +48,7 @@ class AdminStudentController extends Controller
         ]);
 
 
-        User::Create([
+        $userdata = User::Create([
             'user_level'    => "student",
             'account_id'    => $generator,
             'firstname'     => $request->student_firstname,
@@ -44,13 +62,33 @@ class AdminStudentController extends Controller
             'birthplace'    => $request->student_birthplace,
             'address'       => $request->student_address,
             'age'           => Carbon::parse($request->student_birthdate)->age,
+            'emailVerify_token' => Str::random(60),
             'image'         => '/default_profile/user.png',
             'password'      => Hash::make($generator.$request->student_lastname),
         ]);
 
+        Mail::to($email)->send(new MailNotify($userdata));
+
 
         return redirect()->back();
     }
+
+    public function emailverification($token){
+        $checktoken = User::where('emailVerify_token','=',$token)->first();
+        if(isset($checktoken)){
+            if(!$checktoken->email_verified_at){
+                $checktoken->email_verified_at = Carbon::now();
+                $checktoken->update();
+                // return redirect('login')->with('success','Successfully Verified!');
+                return redirect('login')->withStatus('Successfully Verified!');
+            }
+           
+        }else{
+            return redirect('login')->withStatus('Account is already verified!');
+        }
+    }
+
+    
 
     public function update(Request $request, $id){
         $student                = Student::find($id);

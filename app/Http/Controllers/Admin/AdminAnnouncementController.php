@@ -48,7 +48,8 @@ class AdminAnnouncementController extends Controller
         $announcement->start_date  = $request->announcement_update_start;    
         $announcement->end_date    = $request->announcement_update_end;
         $image = array();
-        if($files = $request->file('announcement_update_image')){
+        if($request->hasFile('announcement_update_image')){
+            $files = $request->file('announcement_update_image');
             foreach($files as $file){
                 $image_name = md5(rand(10,1000));
                 $ext = strtolower($file->guessClientExtension());
@@ -58,7 +59,22 @@ class AdminAnnouncementController extends Controller
                 $file->move(public_path($upload_path), $image_fullname);
                 $image[] = $image_url;
             }
+        }else{
+            // return redirect()->back();
         }
+
+        // if($files = $request->file('announcement_update_image')){
+        //     foreach($files as $file){
+        //         $image_name = md5(rand(10,1000));
+        //         $ext = strtolower($file->guessClientExtension());
+        //         $image_fullname = $image_name . '.' . $ext;
+        //         $upload_path = 'images/';
+        //         $image_url = $upload_path.$image_fullname;
+        //         $file->move(public_path($upload_path), $image_fullname);
+        //         $image[] = $image_url;
+        //     }
+        // }
+
         $announcement->image       = implode('|', $image);
         $announcement->update();    
         return redirect()->back();

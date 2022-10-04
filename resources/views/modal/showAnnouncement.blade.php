@@ -61,8 +61,11 @@
                     {{-- ============ OK FOR SINGLE UPLOAD IMAGE ===============================--}}
 
                 </section>
-                <h3 style="padding: 0; margin:0;" class="text-capitalize text-center">{{$announcement->title}}</h3>
-                <p class="lead text-left"> {!! $announcement->detail !!}</p>
+                
+                <section style="width:100%; word-wrap:break-word;">
+                    <h3 style="padding: 0; margin:0;" class="text-capitalize text-center">{{$announcement->title}}</h3>
+                    <p class="lead text-left" style="margin-top: 12px; font-size:1.5rem;"> {!! $announcement->detail !!}</p>
+                </section>
             </div>
          </div>
      </div>
