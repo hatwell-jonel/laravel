@@ -39,6 +39,35 @@
     {{-- Implementing of Data tables to tables --}}
     <script src="{{asset('js/datatables.js')}}"></script>
     <script>
+
+        // $(function(){
+        //     $('#add_student').on('submit', function(e){
+        //         e.preventDefault();
+        //         $.ajax({
+        //             url:'/admin_access/student',
+        //             method:'POST',
+        //             data: new FormData(this),
+        //             processData: false,
+        //             dataType: 'json',
+        //             contentType: false,
+        //             beforeSend: function(){
+        //                 $(document).find('span.error-text').text('');
+        //             },
+        //             success: function(data){
+        //                 if(data.status == 0){
+        //                     $.each(data.error, function(prefix, val)){
+        //                         $("span".+prefix+'_error').text(val[0]);
+        //                     }
+        //                 }else{
+        //                     $('#add_student')[0].reset();
+        //                     alert(data.msg);
+        //                 }
+        //             }
+        //         });
+        //     })
+        // });
+    
+
         function preventNumbers(e){
             let keyCode = (e.keyCode ? e.keyCode : e.which);
             if(keyCode > 47 && keyCode < 58  || keyCodem > 95 && keyCode < 107){

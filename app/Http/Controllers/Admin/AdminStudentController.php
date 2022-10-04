@@ -12,10 +12,61 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Mail\MailNotify;
 use Mail;
+use Validator;
 
 class AdminStudentController extends Controller
 {
     public function store(Request $request){
+
+        // $validator = Validator::make($request->all(), [
+        //     'email' => 'required|email|unique:students',
+        // ]);
+
+        // if(!$validator->passes()){
+        //     return response()->json(['status'=>0, 'error'=>$validator->errors()->toArray()]);
+        // }else{
+        //     $generator  = Helper::IDGenerator(new Student,'student_id', 5, date('Y'));
+        //     $email = $request->student_email;
+            
+        //     $query = Student::create([
+        //         'student_id'    => $generator,
+        //         'firstname'     => $request->student_firstname,
+        //         'middlename'    => $request->student_middlename,
+        //         'lastname'      => $request->student_lastname,
+        //         'contact'       => $request->student_contact,
+        //         'email'         => $request->student_email,
+        //         'gender'        => $request->student_gender,
+        //         'birthdate'     => $request->student_birthdate,
+        //         'birthplace'    => $request->student_birthplace,
+        //         'address'       => $request->student_address,
+        //         'age'           => Carbon::parse($request->student_birthdate)->age,
+        //     ]);
+
+        //     $userdata = User::Create([
+        //         'user_level'    => "student",
+        //         'account_id'    => $generator,
+        //         'firstname'     => $request->student_firstname,
+        //         'middlename'    => $request->student_middlename,
+        //         'lastname'      => $request->student_lastname,
+        //         'contact'       => $request->student_contact,
+        //         'email'         => $request->student_email,
+        //         'gender'        => $request->student_gender,
+        //         'birthdate'     => $request->student_birthdate,
+        //         'name'          => $request->student_firstname. " " . $request->student_lastname,
+        //         'birthplace'    => $request->student_birthplace,
+        //         'address'       => $request->student_address,
+        //         'age'           => Carbon::parse($request->student_birthdate)->age,
+        //         'emailVerify_token' => Str::random(60),
+        //         'image'         => '/default_profile/user.png',
+        //         'password'      => Hash::make($generator.$request->student_lastname),
+        //     ]);
+    
+        //     Mail::to($email)->send(new MailNotify($userdata));
+
+        //     if($query){
+        //         return response()->json(['status'=>1, 'msg'=>"New student added."]);
+        //     }
+        // }
 
         // $request->validate([
         //     'firstname'     => 'required',
@@ -27,6 +78,13 @@ class AdminStudentController extends Controller
         //     'birthdate'     => 'required',
         //     'birthplace'    => 'required',
         //     'address'       => 'required',
+        // ]);
+
+        
+        // ============ GOOD CODE ======================================================
+
+        // $request->validate([
+        //     'email' => 'required|email|unique:students',
         // ]);
 
 
@@ -68,6 +126,7 @@ class AdminStudentController extends Controller
         ]);
 
         Mail::to($email)->send(new MailNotify($userdata));
+        // ============ GOOD CODE ======================================================
 
 
         return redirect()->back();

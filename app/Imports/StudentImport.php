@@ -15,6 +15,9 @@ use Maatwebsite\Excel\Validators\Failure;
 use Maatwebsite\Excel\Concerns\ToModel;
 use App\Helpers\Helper;
 use App\User;
+use Illuminate\Support\Str;
+use App\Mail\MailNotify;
+use Mail;
 
 
 class StudentImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure
@@ -29,6 +32,7 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
     {
         $student = new Student;
         $generator = Helper::IDGenerator($student,'student_id', 5, date('Y'));
+        
 
         return [new Student([
                 'student_id'    => $generator,
@@ -42,6 +46,7 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
                 'birthdate'     => $row['birthdate'],
                 'birthplace'    => $row['birthplace'],
                 'address'       => $row['address'],
+
         ]), 
                 User::create([
                     'user_level'    => 'student',
@@ -57,7 +62,7 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
                     'age'           => $row['age'],
                     'name'          => $row['firstname'].$row['lastname'],
                     'email'         => $row['email'],
-                    'password'      => bcrypt($generator.$row['lastname']),])
+                    'password'      => bcrypt($generator.$row['lastname']),]),
         ];
     }
 

@@ -6,6 +6,9 @@
 
 @section('content')
     <div class="container-fluid">
+        @error('student_email')
+            {{$message}}
+        @enderror
         <div style="display: flex; align-items:center; justify-content:space-between;">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-addStudent" data-tooltip="add">
                 <i class="fa fa-plus-square"></i> Student
